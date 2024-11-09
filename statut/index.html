@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statut du site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .progress {
+            margin-top: 20px;
+            height: 30px;
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            background-color: #007BFF;
+            width: 0;
+            text-align: center;
+            color: white;
+            line-height: 30px;
+            transition: width 0.3s;
+        }
+    </style>
+    <script>
+        async function fetchProgress() {
+            try {
+                const response = await fetch('av.txt');
+                const text = await response.text();
+                const progress = parseInt(text.trim(), 10);
+                const progressBar = document.querySelector('.progress-bar');
+                progressBar.style.width = progress + '%';
+                progressBar.textContent = progress + '%';
+            } catch (error) {
+                console.error('Erreur lors de la récupération du pourcentage:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchProgress);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Statut du site</h1>
+        <p>Notre site est actuellement en refonte totale. Nous travaillons dur pour vous apporter une nouvelle version améliorée.</p>
+        <p>Voici l'état d'avancement du développement de la nouvelle version :</p>
+        <div class="progress">
+            <div class="progress-bar">0%</div>
+        </div>
+        <p>Vous pouvez accéder à la prévisualisation du site à l'adresse suivante : <a href="http://rocknite-studio.serveo.net/preview" target="_blank">rocknite-studio.serveo.net/preview</a></p>
+    </div>
+</body>
+</html>

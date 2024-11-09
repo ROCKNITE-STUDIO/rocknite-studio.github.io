@@ -1,0 +1,103 @@
+/* Réinitialisation des marges et paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style global pour le body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container pour le contenu principal */
+.container {
+    max-width: 400px;
+    width: 100%;
+    background-color: #2e2d2d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Titres (h1) */
+h1 {
+    margin-bottom: 20px;
+    color: #bbfcfb;
+}
+
+/* Formulaires */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    text-align: left;
+    font-weight: bold;
+    color: #bbfcfb;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    background-color: #f3f3f3;
+    color: #333;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+    outline: none;
+    background-color: #e6e6e6;
+}
+
+/* Bouton de soumission */
+button {
+    background-color: #bbfcfb;
+    color: #333;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ffffff;
+}
+
+/* Liens */
+a {
+    color: #bbfcfb;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* Style pour le lien d'inscription/connexion en bas */
+.bottom-link {
+    margin-top: auto;
+    color: #ffffff;
+}

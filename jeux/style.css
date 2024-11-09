@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+header {
+    background-color: #2e2d2d;
+    color: #bbfcfb;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header li {
+    margin: 0;
+}
+
+header a {
+    color: #bbfcfb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    font-weight: bold; /* Ajouté pour mettre en gras */
+}
+
+
+header a:hover {
+    color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6; /* Améliorer la lisibilité du texte */
+    background-color: #000000; /* Couleur de fond pour le body */
+    color: #333; /* Couleur du texte */
+    display: flex; /* Utiliser Flexbox pour centrer le contenu */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    min-height: 100vh; /* Assurer que le corps prend toute la hauteur de la fenêtre */
+    padding-top: 60px; /* Espacement pour la barre de navigation fixe */
+}
+
+.container {
+    max-width: 800px; /* Largeur maximale pour le conteneur */
+    width: 100%; /* Assurer que le conteneur utilise toute la largeur disponible jusqu'à la largeur maximale */
+    padding: 20px; /* Espacement intérieur pour le conteneur */
+    background-color: #2e2d2d; /* Fond gris foncé pour le conteneur */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour donner de la profondeur */
+    text-align: center; /* Centrer le texte à l'intérieur du conteneur */
+    color: #ffffff; /* Couleur du texte pour contraster avec le fond du conteneur */
+}
