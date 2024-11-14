@@ -37,7 +37,7 @@ body {
 .slide img {
     width: 65%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
 .content {
@@ -45,7 +45,8 @@ body {
     right: 5%;
     width: 30%;
     text-align: left;
-    margin-left: 20px; /* Ajout d'un espace entre l'image et le texte */
+    margin-left: 40px;
+    padding-left: 20px;
 }
 
 .content small {
