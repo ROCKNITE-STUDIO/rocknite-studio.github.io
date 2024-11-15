@@ -10,8 +10,6 @@ ul {
     margin: 0;
 }
 
-
-
 header {
     background-color: #2e2d2d;
     color: #bbfcfb;
@@ -38,9 +36,8 @@ header a {
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s;
-    font-weight: bold; /* Ajouté pour mettre en gras */
+    font-weight: bold;
 }
-
 
 header a:hover {
     color: #ffffff;
@@ -48,23 +45,102 @@ header a:hover {
 
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6; /* Améliorer la lisibilité du texte */
-    background-color: #000000; /* Couleur de fond pour le body */
-    color: #333; /* Couleur du texte */
-    display: flex; /* Utiliser Flexbox pour centrer le contenu */
-    justify-content: center; /* Centrer horizontalement */
-    align-items: center; /* Centrer verticalement */
-    min-height: 100vh; /* Assurer que le corps prend toute la hauteur de la fenêtre */
-    padding-top: 60px; /* Espacement pour la barre de navigation fixe */
+    line-height: 1.6;
+    background-color: #000000;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px;
+    flex-direction: column;
 }
 
-.container {
-    max-width: 800px; /* Largeur maximale pour le conteneur */
-    width: 100%; /* Assurer que le conteneur utilise toute la largeur disponible jusqu'à la largeur maximale */
-    padding: 20px; /* Espacement intérieur pour le conteneur */
-    background-color: #2e2d2d; /* Fond gris foncé pour le conteneur */
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour donner de la profondeur */
-    text-align: center; /* Centrer le texte à l'intérieur du conteneur */
-    color: #ffffff; /* Couleur du texte pour contraster avec le fond du conteneur */
+.slider-container {
+    width: 90%;
+    max-width: 1200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.slide img {
+    width: 65%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.content {
+    position: absolute;
+    right: 5%;
+    width: 30%;
+    text-align: left;
+    margin-left: 40px;
+    padding-left: 20px;
+}
+
+.content small {
+    font-size: 1.2rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;  /* Correction ici, le texte h1 est maintenant blanc */
+}
+
+.btn {
+    display: inline-block;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #f0f0f0;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dots button {
+    border: none;
+    background-color: #555;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dots button.active {
+    background-color: #fff;
+}
+
+.dots button:hover {
+    background-color: #aaa;
 }
