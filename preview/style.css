@@ -4,14 +4,68 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #111;
-    color: #fff;
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #2e2d2d;
+    color: #bbfcfb;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header ul {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
+    gap: 20px;
+}
+
+header li {
+    margin: 0;
+}
+
+header a {
+    color: #bbfcfb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+    background-color: #2e2d2d;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #ffffff;
+    margin-top: 20px;
 }
 
 .slider-container {
@@ -20,6 +74,7 @@ body {
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+    margin-top: 20px;
 }
 
 .slider {
