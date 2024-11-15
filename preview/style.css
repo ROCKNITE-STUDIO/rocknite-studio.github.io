@@ -56,18 +56,6 @@ body {
     flex-direction: column;
 }
 
-.container {
-    max-width: 800px;
-    width: 100%;
-    padding: 20px;
-    background-color: #2e2d2d;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    color: #ffffff;
-    margin-top: 20px;
-}
-
 .slider-container {
     width: 90%;
     max-width: 1200px;
@@ -114,6 +102,7 @@ body {
 .content h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
+    color: #fff;  /* Correction ici, le texte h1 est maintenant blanc */
 }
 
 .btn {
