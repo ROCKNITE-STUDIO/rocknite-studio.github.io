@@ -68,6 +68,10 @@ body {
 
 .news-item {
     margin-bottom: 20px;
+    padding: 15px;
+    background-color: #3c3c3c;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .news-item h2 {
@@ -77,6 +81,14 @@ body {
 
 .news-item p {
     font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.news-item img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
     margin-bottom: 10px;
 }
 
