@@ -1,11 +1,11 @@
 [
     {
-        "title": "Exploration Z",
-        "creator": "ROCKNITE STUDIO",
+        "title": "Minos Escape",
+        "creator": "Sneak0811",
         "version": "1.0",
-        "price": "19.99€",
+        "price": "free",
         "featured": true,
-        "image": "https://via.placeholder.com/600x300"
+        "image": "https://rocknite-studio.github.io/images/image1.png"
     },
     {
         "title": "Aventure Mystère",
