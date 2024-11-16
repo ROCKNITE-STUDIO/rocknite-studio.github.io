@@ -3,73 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROCKNITE STUDIO | news</title>
+    <title>ROCKNITE STUDIO | News</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="icon" href="https://rocknite-studio.github.io/logo.png" />
-    <meta name="description" content="ROCKNITE STUDIO | Découvrez nos dernières actualités">
+    <meta name="description" content="ROCKNITE STUDIO | Toutes les actualités concernant nos projets et jeux !">
 </head>
 <body>
     <header>
         <ul>
-            <li>
-                <a href="https://rocknite-studio.github.io/">Acceuil</a>
-            </li>
-            <li>
-                <a href="https://rocknite-studio.github.io/jeux">Jeux</a>
-            </li>
-            <li>
-                <a href="https://rocknite-studio.github.io/news">News</a>
-            </li>
-            <li>
-                <a href="https://rocknite-studio.github.io/SUPPORT">Assistance</a>
-            </li>
-            <li>
-                <a href="https://rocknite-studio.github.io/login">Compte</a>
-            </li>
+            <li><a href="https://rocknite-studio.github.io/">Accueil</a></li>
+            <li><a href="https://rocknite-studio.github.io/jeux">Jeux</a></li>
+            <li><a href="https://rocknite-studio.github.io/news">News</a></li>
+            <li><a href="https://rocknite-studio.github.io/SUPPORT">Assistance</a></li>
+            <li><a href="https://rocknite-studio.github.io/login">Compte</a></li>
         </ul>
     </header>
 
-    <!-- Les actualités seront chargées ici sans le conteneur supplémentaire -->
     <div id="news-container">
-        <!-- Les actualités seront insérées ici par JavaScript -->
+        <!-- Les actualités seront insérées ici via JavaScript -->
     </div>
 
     <script>
+        // Fonction pour charger les actualités depuis le fichier JSON
         fetch('news.json')
             .then(response => response.json())
             .then(data => {
-                const container = document.getElementById('news-container');
+                const newsContainer = document.getElementById('news-container');
                 data.forEach(news => {
-                    const newsBox = document.createElement('div');
-                    newsBox.classList.add('news-item');
+                    // Créer un élément de type news-item pour chaque actualité
+                    const newsItem = document.createElement('div');
+                    newsItem.classList.add('news-item');
 
+                    // Ajouter le titre
                     const title = document.createElement('h2');
                     title.textContent = news.title;
-                    newsBox.appendChild(title);
+                    newsItem.appendChild(title);
 
+                    // Ajouter la date
+                    const date = document.createElement('p');
+                    date.classList.add('date');
+                    date.textContent = news.date;  // La date devrait être au format : "12 Novembre 2024"
+                    newsItem.appendChild(date);
+
+                    // Ajouter la description
                     const description = document.createElement('p');
                     description.textContent = news.description;
-                    newsBox.appendChild(description);
+                    newsItem.appendChild(description);
 
+                    // Ajouter l'image si elle existe
                     if (news.image) {
                         const image = document.createElement('img');
                         image.src = news.image;
-                        image.alt = news.title;
-                        newsBox.appendChild(image);
+                        image.alt = "Image de l'actualité";
+                        newsItem.appendChild(image);
                     }
 
+                    // Ajouter le lien vers l'actualité complète
                     const link = document.createElement('a');
                     link.href = news.link;
                     link.classList.add('btn');
-                    link.textContent = "Voir les détails";
-                    newsBox.appendChild(link);
+                    link.textContent = 'Lire plus';
+                    newsItem.appendChild(link);
 
-                    container.appendChild(newsBox);
+                    // Ajouter l'élément de l'actualité au container
+                    newsContainer.appendChild(newsItem);
                 });
             })
-            .catch(error => {
-                console.error('Erreur de chargement des actualités:', error);
-            });
+            .catch(error => console.log('Erreur de chargement du fichier JSON:', error));
     </script>
 </body>
 </html>
