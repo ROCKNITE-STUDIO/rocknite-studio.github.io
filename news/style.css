@@ -55,7 +55,7 @@ body {
     padding-top: 60px;
 }
 
-.container {
+#news-container {
     max-width: 800px;
     width: 100%;
     padding: 20px;
