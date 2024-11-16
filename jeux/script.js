@@ -12,12 +12,16 @@ function renderGames(games) {
     const featuredGame = games.find(game => game.featured);
     if (featuredGame) {
         featuredGameElement.innerHTML = `
-            <img src="${featuredGame.image}" alt="${featuredGame.title}">
-            <div class="info">
-                <h2>${featuredGame.title}</h2>
-                <p>by ${featuredGame.creator}</p>
-                <span>Version: ${featuredGame.version} | ${featuredGame.price}</span>
-            </div>
+            <a href="${featuredGame.link}" target="_blank">
+                <div class="featured-content">
+                    <img src="${featuredGame.image}" alt="${featuredGame.title}">
+                    <div class="info">
+                        <h2>${featuredGame.title}</h2>
+                        <p>by ${featuredGame.creator}</p>
+                        <span>Version: ${featuredGame.version} | ${featuredGame.price}</span>
+                    </div>
+                </div>
+            </a>
         `;
     }
 
@@ -27,13 +31,15 @@ function renderGames(games) {
             const gameCard = document.createElement('div');
             gameCard.classList.add('game-card');
             gameCard.innerHTML = `
-                <img src="${game.image}" alt="${game.title}">
-                <div class="details">
-                    <h3>${game.title}</h3>
-                    <p>by ${game.creator}</p>
-                    <span>Version: ${game.version}</span>
-                    <p class="price">${game.price}</p>
-                </div>
+                <a href="${game.link}" target="_blank">
+                    <img src="${game.image}" alt="${game.title}">
+                    <div class="details">
+                        <h3>${game.title}</h3>
+                        <p>by ${game.creator}</p>
+                        <span>Version: ${game.version}</span>
+                        <p class="price">${game.price}</p>
+                    </div>
+                </a>
             `;
             gamesListElement.appendChild(gameCard);
         }
