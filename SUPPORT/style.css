@@ -4,18 +4,27 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000; /* Fond noir */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 80px; /* Espace pour la barre de navigation */
+}
+
 ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-
-
 header {
     background-color: #2e2d2d;
     color: #bbfcfb;
-    padding: 10px 20px;
+    padding: 15px 20px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -29,42 +38,85 @@ header ul {
     gap: 20px;
 }
 
-header li {
-    margin: 0;
-}
-
 header a {
     color: #bbfcfb;
     text-decoration: none;
-    font-size: 16px;
+    font-weight: bold;
     transition: color 0.3s;
-    font-weight: bold; /* Ajouté pour mettre en gras */
 }
-
 
 header a:hover {
     color: #ffffff;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6; /* Améliorer la lisibilité du texte */
-    background-color: #000000; /* Couleur de fond pour le body */
-    color: #333; /* Couleur du texte */
-    display: flex; /* Utiliser Flexbox pour centrer le contenu */
-    justify-content: center; /* Centrer horizontalement */
-    align-items: center; /* Centrer verticalement */
-    min-height: 100vh; /* Assurer que le corps prend toute la hauteur de la fenêtre */
-    padding-top: 60px; /* Espacement pour la barre de navigation fixe */
+/* Conteneur pour les cartes de support */
+.container {
+    max-width: 1200px; /* Augmenter la largeur */
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
 }
 
-.container {
-    max-width: 800px; /* Largeur maximale pour le conteneur */
-    width: 100%; /* Assurer que le conteneur utilise toute la largeur disponible jusqu'à la largeur maximale */
-    padding: 20px; /* Espacement intérieur pour le conteneur */
-    background-color: #2e2d2d; /* Fond gris foncé pour le conteneur */
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour donner de la profondeur */
-    text-align: center; /* Centrer le texte à l'intérieur du conteneur */
-    color: #ffffff; /* Couleur du texte pour contraster avec le fond du conteneur */
+#support-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.support-card {
+    background-color: #2e2d2d;
+    border-radius: 8px;
+    padding: 20px;
+    width: calc(25% - 20px); /* Modifier pour afficher 4 par ligne */
+    display: flex;
+    flex-direction: column; /* Organiser les éléments verticalement */
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    overflow: hidden;
+}
+
+.support-card img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.support-card .info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.support-card .info h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Modification des couleurs */
+.support-card .info p {
+    margin: 5px 0;
+    color: #ff9900; /* Texte en orange pour l'email et le rôle */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.support-card .info .label {
+    color: #ffffff; /* Etiquette 'Email' et 'Rôle' en blanc */
+    font-weight: bold;
+}
+
+.support-card .info a {
+    color: #ff9900; /* Email en orange */
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.support-card .info a:hover {
+    text-decoration: underline;
 }
