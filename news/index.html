@@ -29,18 +29,46 @@
         </ul>
     </header>
 
-    <div class="container">
-        <h1>Dernières Actualités</h1>
-        <div class="news-item">
-            <h2>Nouvelle mise à jour de nos jeux</h2>
-            <p>Nous avons ajouté de nouvelles fonctionnalités à nos jeux. Découvrez-les maintenant !</p>
-            <a href="https://rocknite-studio.github.io/jeux" class="btn">Voir les détails</a>
-        </div>
-        <div class="news-item">
-            <h2>Support client amélioré</h2>
-            <p>Nous avons renforcé notre équipe d'assistance pour répondre plus rapidement à vos demandes.</p>
-            <a href="https://rocknite-studio.github.io/SUPPORT" class="btn">Contactez-nous</a>
-        </div>
+    <div class="container" id="news-container">
+        <!-- Les actualités seront chargées ici -->
     </div>
+
+    <script>
+        fetch('news.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('news-container');
+                data.forEach(news => {
+                    const newsBox = document.createElement('div');
+                    newsBox.classList.add('news-item');
+
+                    const title = document.createElement('h2');
+                    title.textContent = news.title;
+                    newsBox.appendChild(title);
+
+                    const description = document.createElement('p');
+                    description.textContent = news.description;
+                    newsBox.appendChild(description);
+
+                    if (news.image) {
+                        const image = document.createElement('img');
+                        image.src = news.image;
+                        image.alt = news.title;
+                        newsBox.appendChild(image);
+                    }
+
+                    const link = document.createElement('a');
+                    link.href = news.link;
+                    link.classList.add('btn');
+                    link.textContent = "Voir les détails";
+                    newsBox.appendChild(link);
+
+                    container.appendChild(newsBox);
+                });
+            })
+            .catch(error => {
+                console.error('Erreur de chargement des actualités:', error);
+            });
+    </script>
 </body>
 </html>
