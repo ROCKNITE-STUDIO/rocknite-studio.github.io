@@ -1,28 +1,41 @@
-async function loadGames() {
-    const response = await fetch('games.json');
-    const games = await response.json();
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('games.json')
+        .then(response => response.json())
+        .then(data => renderGames(data));
+});
 
-    const featuredGameDiv = document.getElementById('featured-game');
-    const gameListDiv = document.getElementById('game-list');
+function renderGames(games) {
+    const featuredGameElement = document.getElementById('featured-game');
+    const gamesListElement = document.getElementById('games-list');
 
-    games.forEach(game => {
-        const gameCard = document.createElement('div');
-        gameCard.className = game.featured ? 'featured-card' : 'game-card';
-
-        gameCard.innerHTML = `
-            <img src="${game.image}" alt="${game.title}">
-            <h2>${game.title}</h2>
-            <p>by ${game.creator}</p>
-            <p>Version: ${game.version}</p>
-            <p class="price">${game.price}</p>
+    // Afficher le jeu en vedette
+    const featuredGame = games.find(game => game.featured);
+    if (featuredGame) {
+        featuredGameElement.innerHTML = `
+            <img src="${featuredGame.image}" alt="${featuredGame.title}">
+            <div class="info">
+                <h2>${featuredGame.title}</h2>
+                <p>by ${featuredGame.creator}</p>
+                <span>Version: ${featuredGame.version} | ${featuredGame.price}</span>
+            </div>
         `;
+    }
 
-        if (game.featured) {
-            featuredGameDiv.appendChild(gameCard);
-        } else {
-            gameListDiv.appendChild(gameCard);
+    // Afficher les autres jeux
+    games.forEach(game => {
+        if (!game.featured) {
+            const gameCard = document.createElement('div');
+            gameCard.classList.add('game-card');
+            gameCard.innerHTML = `
+                <img src="${game.image}" alt="${game.title}">
+                <div class="details">
+                    <h3>${game.title}</h3>
+                    <p>by ${game.creator}</p>
+                    <span>Version: ${game.version}</span>
+                    <p class="price">${game.price}</p>
+                </div>
+            `;
+            gamesListElement.appendChild(gameCard);
         }
     });
 }
-
-document.addEventListener('DOMContentLoaded', loadGames);
