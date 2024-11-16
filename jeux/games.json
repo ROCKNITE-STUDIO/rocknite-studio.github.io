@@ -5,34 +5,31 @@
         "version": "1.0",
         "price": "free",
         "featured": true,
+        "link": "https://rocknite-studio.github.io/minos-escape",
         "image": "https://rocknite-studio.github.io/images/image1.png"
     },
     {
-        "title": "Aventure Mystère",
-        "creator": "John Doe",
-        "version": "1.2",
-        "price": "9.99€",
+        "title": "ROCKNITE",
+        "creator": "Satanas1275",
+        "version": "Alpha 1.2.1",
+        "price": "free",
+        "link": "https://example.com/aventure-mystere",
         "image": "https://via.placeholder.com/150"
     },
     {
-        "title": "Course Épique",
-        "creator": "Jane Smith",
-        "version": "0.9",
-        "price": "12.50€",
+        "title": "SkyPlatform",
+        "creator": "Satanas1275",
+        "version": "unpublished",
+        "price": "free",
+        "link": "https://example.com/course-epique",
         "image": "https://via.placeholder.com/150"
     },
     {
-        "title": "Survie X",
-        "creator": "Alice Wonderland",
-        "version": "2.0",
-        "price": "14.99€",
-        "image": "https://via.placeholder.com/150"
-    },
-    {
-        "title": "Puzzle Genius",
-        "creator": "Bob Builder",
-        "version": "1.5",
-        "price": "7.99€",
+        "title": "Resonance of Destruction",
+        "creator": "Satanas1275",
+        "version": "unpublished",
+        "price": "free",
+        "link": "https://example.com/survie-x",
         "image": "https://via.placeholder.com/150"
     }
 ]
