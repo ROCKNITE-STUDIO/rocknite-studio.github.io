@@ -5,11 +5,13 @@ Tout contenu signé **ROCKNITE STUDIO ©** est protégé par la Licence Rocknite
 ## Conditions d'utilisation
 
 1. **Usage autorisé** :
-   - Vous êtes autorisé à consulter et partager le contenu signé **ROCKNITE STUDIO ©** pour un usage personnel et non commercial.
+   - Tout le monde est autorisé à utiliser, consulter, et partager gratuitement le contenu signé **ROCKNITE STUDIO ©**, tant que cela respecte les conditions ci-dessous.
+   - Les jeux signés **ROCKNITE STUDIO ©** ne peuvent être partagés que s'ils sont entièrement gratuits.
 
 2. **Restrictions** :
-   - Toute utilisation commerciale du contenu signé **ROCKNITE STUDIO ©** est strictement interdite sans autorisation écrite préalable.
-   - Vous n'êtes pas autorisé à modifier, redistribuer ou adapter le contenu sans accord préalable de **Rocknite Studio**.
+   - L'utilisation commerciale du contenu signé **ROCKNITE STUDIO ©** est strictement interdite sans autorisation écrite préalable.
+   - Les jeux payants signés **ROCKNITE STUDIO ©** ne peuvent en aucun cas être redistribués.
+   - Vous n'êtes pas autorisé à modifier, redistribuer ou adapter tout autre contenu sans accord préalable de **Rocknite Studio**.
 
 3. **Attribution** :
    - Si vous partagez ou mentionnez du contenu signé **ROCKNITE STUDIO ©**, vous devez créditer **Rocknite Studio** en incluant la mention "**ROCKNITE STUDIO ©**".
@@ -22,7 +24,7 @@ Tout contenu signé **ROCKNITE STUDIO ©** est protégé par la Licence Rocknite
 
 ## Contact
 
-Pour toute question, demande d'autorisation spécifique ou utilisation commerciale, veuillez contacter **Rocknite Studio**.
+Pour toute question, demande d'autorisation spécifique ou utilisation commerciale, veuillez visiter **[rocknite-studio.github.io/SUPPORT](https://rocknite-studio.github.io/SUPPORT)**.
 
 ---
 
