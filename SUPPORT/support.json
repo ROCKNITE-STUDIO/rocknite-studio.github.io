@@ -2,20 +2,20 @@
     {
         "name": "ROCKNITE STUDIO",
         "email": "rocknite.studio@gmail.com",
-        "profilePicture": "https://via.placeholder.com/150",
+        "profilePicture": "https://discord.com/assets/887bc8fac6c9878f058a.png",
         "role": "Support"
     },
     {
         "name": "Satanas1275",
         "email": "satanas1275@gmail.com",
-        "discord": "Satanas1275",
-        "profilePicture": "https://via.placeholder.com/150",
+        "discord": "satanas1275",
+        "profilePicture": "https://cdn.discordapp.com/avatars/1103192768341352520/8fd4f117bf19c07fde59aea1c3fc0a69.webp?size=128",
         "role": "Fondateur"
     },
     {
         "name": "Sneak0811",
-        "discord": "Sneak0811#1234", 
-        "profilePicture": "https://via.placeholder.com/150",
+        "discord": "sneak0811", 
+        "profilePicture": "https://cdn.discordapp.com/avatars/1184564437051523243/931d1fe9fe7a52770915ee52fe34a7e3.webp?size=128",
         "role": "Développer"
     }
 ]
