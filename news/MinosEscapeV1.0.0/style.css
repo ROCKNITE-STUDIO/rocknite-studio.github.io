@@ -52,21 +52,22 @@ main {
     align-items: center;
     padding: 20px;
     width: 100%;
+    overflow: visible;
 }
 
 .news-item {
-    background-color: #3c3c3c;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    padding: 30px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: transparent; /* Supprime le fond */
+    border-radius: 0; /* Supprime les coins arrondis */
+    box-shadow: none; /* Supprime les ombres */
+    max-width: none; /* Pas de limite de largeur */
+    padding: 0; /* Supprime les marges internes */
+    text-align: left; /* Alignement par défaut */
+    transition: none; /* Supprime les animations */
 }
 
 .news-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transform: none; /* Pas d'effet au survol */
+    box-shadow: none; /* Pas d'effet d'ombre */
 }
 
 .news-item h2 {
