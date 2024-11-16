@@ -55,46 +55,60 @@ body {
     padding-top: 60px;
 }
 
+/* Ajouter un padding de 50px sur les côtés du container */
 #news-container {
-    max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes de largeur égale */
+    gap: 30px; /* Espacement entre les boîtes, un peu plus large */
+    padding: 20px 50px; /* 50px de padding à gauche et à droite */
+    max-width: 1600px; /* Agrandir la largeur max du container */
     width: 100%;
-    padding: 20px;
-    background-color: #2e2d2d;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: center;
     color: #ffffff;
 }
 
 .news-item {
-    margin-bottom: 20px;
-    padding: 15px;
+    padding: 30px; /* Augmenter l'espace intérieur pour agrandir la box */
     background-color: #3c3c3c;
     border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px; /* Augmenter la hauteur des boîtes */
+    width: 100%; /* Assurer que les boîtes prennent toute la largeur disponible */
+    max-width: 350px; /* Ajuster la largeur max de chaque boîte */
 }
 
 .news-item h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 20px; /* Augmenter la taille du titre */
+    margin-bottom: 15px;
 }
 
 .news-item p {
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 16px; /* Augmenter la taille du texte */
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.news-item .date {
+    font-size: 14px;
+    color: #bbb; /* Couleur plus claire pour la date */
+    margin-bottom: 15px;
 }
 
 .news-item img {
     width: 100%;
-    max-width: 500px;
     height: auto;
     border-radius: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .btn {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 25px; /* Agrandir le bouton */
     background-color: #bbfcfb;
     color: #2e2d2d;
     text-decoration: none;
@@ -105,4 +119,17 @@ body {
 
 .btn:hover {
     background-color: #ffffff;
+}
+
+/* Pour une meilleure disposition responsive */
+@media (max-width: 1024px) {
+    #news-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur les écrans moyens */
+    }
+}
+
+@media (max-width: 600px) {
+    #news-container {
+        grid-template-columns: 1fr; /* 1 colonne sur les petits écrans */
+    }
 }
