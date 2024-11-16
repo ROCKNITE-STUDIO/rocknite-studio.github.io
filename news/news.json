@@ -1,13 +1,15 @@
 [
-  {
-    "title": "Nouvelle mise à jour de nos jeux",
-    "description": "Nous avons ajouté de nouvelles fonctionnalités à nos jeux. Découvrez-les maintenant !",
-    "image": "https://example.com/image1.jpg",
-    "link": "https://rocknite-studio.github.io/jeux"
-  },
-  {
-    "title": "Support client amélioré",
-    "description": "Nous avons renforcé notre équipe d'assistance pour répondre plus rapidement à vos demandes.",
-    "link": "https://rocknite-studio.github.io/SUPPORT"
-  }
+    {
+        "title": "Mise à jour du site",
+        "description": "Le site a reçu une nouvelle mise à jour pour améliorer votre expérience.",
+        "link": "https://rocknite-studio.github.io/news/mise-a-jour",
+        "date": "16 Novembre 2024"
+    },
+    {
+        "title": "Minos Escape",
+        "description": "Sortie officiel de Minos Escape V1 !",
+        "image": "https://rocknite-studio.github.io/images/image1.png",
+        "link": "https://rocknite-studio.github.io/news/nouveau-jeu",
+        "date": "15 Novembre 2024"
+    }
 ]
