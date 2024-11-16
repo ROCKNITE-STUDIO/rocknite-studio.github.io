@@ -1,20 +1,38 @@
 [
     {
-        "title": "Minos Escape",
-        "creator": "Sneak0811",
+        "title": "Exploration Z",
+        "creator": "ROCKNITE STUDIO",
         "version": "1.0",
-        "image": "https://rocknite-studio.github.io/images/image1.png"
+        "price": "19.99€",
+        "featured": true,
+        "image": "https://via.placeholder.com/600x300"
     },
     {
         "title": "Aventure Mystère",
         "creator": "John Doe",
         "version": "1.2",
+        "price": "9.99€",
         "image": "https://via.placeholder.com/150"
     },
     {
         "title": "Course Épique",
         "creator": "Jane Smith",
         "version": "0.9",
+        "price": "12.50€",
+        "image": "https://via.placeholder.com/150"
+    },
+    {
+        "title": "Survie X",
+        "creator": "Alice Wonderland",
+        "version": "2.0",
+        "price": "14.99€",
+        "image": "https://via.placeholder.com/150"
+    },
+    {
+        "title": "Puzzle Genius",
+        "creator": "Bob Builder",
+        "version": "1.5",
+        "price": "7.99€",
         "image": "https://via.placeholder.com/150"
     }
 ]
