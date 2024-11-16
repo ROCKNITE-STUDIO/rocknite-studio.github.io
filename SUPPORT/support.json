@@ -1,0 +1,21 @@
+[
+    {
+        "name": "ROCKNITE STUDIO",
+        "email": "rocknite.studio@gmail.com",
+        "profilePicture": "https://via.placeholder.com/150",
+        "role": "Support"
+    },
+    {
+        "name": "Satanas1275",
+        "email": "satanas1275@gmail.com",
+        "discord": "Satanas1275",
+        "profilePicture": "https://via.placeholder.com/150",
+        "role": "Fondateur"
+    },
+    {
+        "name": "Sneak0811",
+        "discord": "Sneak0811#1234", 
+        "profilePicture": "https://via.placeholder.com/150",
+        "role": "Développer"
+    }
+]
