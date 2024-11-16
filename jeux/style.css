@@ -44,25 +44,42 @@ body {
     color: #ffffff;
     padding-top: 60px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
 }
 
-.container {
-    max-width: 800px;
+#featured-game {
     width: 100%;
     padding: 20px;
-    background-color: #2e2d2d;
+    margin-bottom: 20px;
+}
+
+.featured-card {
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
     border-radius: 8px;
     text-align: center;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.featured-card img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 #game-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 20px;
+    justify-content: center;
+    padding: 0 20px;
 }
 
 .game-card {
@@ -90,4 +107,10 @@ body {
     font-size: 14px;
     margin: 5px 0;
     color: #cccccc;
+}
+
+.game-card .price {
+    font-weight: bold;
+    color: #ffcc00;
+    margin-top: 10px;
 }
