@@ -1,0 +1,13 @@
+[
+  {
+    "title": "Nouvelle mise à jour de nos jeux",
+    "description": "Nous avons ajouté de nouvelles fonctionnalités à nos jeux. Découvrez-les maintenant !",
+    "image": "https://example.com/image1.jpg",
+    "link": "https://rocknite-studio.github.io/jeux"
+  },
+  {
+    "title": "Support client amélioré",
+    "description": "Nous avons renforcé notre équipe d'assistance pour répondre plus rapidement à vos demandes.",
+    "link": "https://rocknite-studio.github.io/SUPPORT"
+  }
+]
