@@ -57,6 +57,13 @@ body {
 }
 
 .container {
+    background-color: #2e2d2d;  /* Fond couleur similaire au header */
+    color: #bbfcfb;  /* Texte en couleur claire pour le contraste */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);  /* Ombre douce pour faire ressortir le conteneur */
+    width: 90%;
+    max-width: 600px;
     text-align: center;
 }
 
@@ -84,4 +91,55 @@ body {
 
 .container a:active {
     color: #bbfcfb;
+}
+
+form {
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+}
+
+form button {
+    background-color: #bbfcfb;
+    color: #2e2d2d;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #9bfbf5;
+}
+
+.bottom-link {
+    color: #bbfcfb;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.bottom-link a {
+    text-decoration: none;
+    color: #bbfcfb;
+}
+
+.bottom-link a:hover {
+    color: #ffffff;
 }
