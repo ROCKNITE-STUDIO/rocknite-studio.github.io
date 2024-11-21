@@ -20,12 +20,14 @@ header {
     top: 0;
     left: 0;
     z-index: 1000;
+    overflow: hidden; /* Évite tout débordement inattendu */
 }
 
 header ul {
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: center; /* Centre horizontalement les items */
+    align-items: center; /* Centre verticalement les items */
+    gap: 20px; /* Ajoute un espace entre les items */
 }
 
 header li {
@@ -38,13 +40,15 @@ header a {
     font-size: 16px;
     transition: color 0.3s;
     font-weight: bold;
+    padding: 5px 10px; /* Rendre les liens plus cliquables */
+    display: block; /* Assure que le padding fonctionne bien */
 }
 
 header a:hover {
     color: #ffffff;
 }
 
-/* Style global pour le body */
+/* Ajout d'un espace en haut du body pour éviter le chevauchement avec le header */
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -55,7 +59,7 @@ body {
     justify-content: space-between;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 70px 20px 20px; /* Ajuste le padding-top selon la hauteur du header */
 }
 
 /* Container pour le contenu principal */
