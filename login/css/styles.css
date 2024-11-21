@@ -143,3 +143,21 @@ form button:hover {
 .bottom-link a:hover {
     color: #ffffff;
 }
+
+/* Ajout d'un style pour le bouton de déconnexion sur la page protégée */
+#logout-button {
+    background-color: #bbfcfb; /* Couleur similaire aux autres boutons */
+    color: #2e2d2d; /* Texte sombre pour contraster avec le fond clair du bouton */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin-top: 20px; /* Espacement au-dessus du bouton */
+}
+
+#logout-button:hover {
+    background-color: #9bfbf5; /* Couleur au survol */
+}
