@@ -99,7 +99,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => {
             console.error('Erreur lors de l\'accès à la page protégée:', error);
-            messageElement.textContent = 'Erreur lors de l\'accès à la page protégée.';
+            // Supprimer le token du localStorage en cas d'erreur
+            localStorage.removeItem('token');
+            messageElement.textContent = 'Erreur lors de l\'accès à la page protégée. Token supprimé.';
         });
 
         if (logoutButton) {
