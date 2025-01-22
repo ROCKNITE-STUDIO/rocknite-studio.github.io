@@ -5,7 +5,7 @@
         "version": "1.0",
         "price": "free",
         "featured": true,
-        "link": "https://rocknite-studio.github.io/minos-escape",
+        "link": "https://rocknite-studio.github.io/game/minos-escape",
         "image": "https://rocknite-studio.github.io/images/image1.png"
     },
     {
@@ -13,7 +13,7 @@
         "creator": "Satanas1275",
         "version": "Alpha 1.2.1",
         "price": "free",
-        "link": "https://example.com/aventure-mystere",
+        "link": "https://rocknite-studio.github.io/unavailable",
         "image": "https://via.placeholder.com/150"
     },
     {
@@ -21,7 +21,7 @@
         "creator": "Satanas1275",
         "version": "unpublished",
         "price": "free",
-        "link": "https://example.com/course-epique",
+        "link": "https://rocknite-studio.github.io/unavailable",
         "image": "https://via.placeholder.com/150"
     },
     {
@@ -29,7 +29,7 @@
         "creator": "Satanas1275",
         "version": "unpublished",
         "price": "free",
-        "link": "https://example.com/survie-x",
+        "link": "https://rocknite-studio.github.io/unavailable",
         "image": "https://via.placeholder.com/150"
     }
 ]
