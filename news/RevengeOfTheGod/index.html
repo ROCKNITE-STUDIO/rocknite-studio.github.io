@@ -5,24 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RevengeOfTheGod - Updates</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+        }
+
+        button {
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            background-color: #555;
+            color: white;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .update {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .update-img {
+            max-width: 100%;
+            border-radius: 5px;
+        }
+
+        body.light {
+            background-color: white;
+            color: black;
+        }
+
+        body.dark {
+            background-color: #121212;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>RevengeOfTheGod - Mises à Jour</h1>
+        <h1>RevengeOfTheGod - Développement update</h1>
         <button id="theme-toggle">🌙 Mode Sombre</button>
     </header>
     
     <main>
         <section class="update">
-            <h2>Version 1.1 - Améliorations du Gameplay</h2>
-            <p>Ajout d'un nouveau système de combat et correction de bugs.</p>
-            <img src="update1.1.jpg" alt="Nouveau gameplay" class="update-img">
+            <h2>Ajout d'un écran de chargement</h2>
+            <p>Juste un écran de chargement parce que voilà...</p>
+            <img src="images/LoadingScreen.png" alt="loading screen" class="update-img">
+        </section>
+        
+        <section class="update">
+            <h2>Ajout des esquives</h2>
+            <p>J'ai ajouté les esquives... et ça fonctionne !!! (Super image si dessous)</p>
+            <img src="images/esquive.png" alt="esquive" class="update-img">
+        </section>
+        
+        <section class="update">
+            <h2>Création de l'inventaire...</h2>
+            <p>J'ai ajouté l'inventaire... mais il ne fonctionne pas et je verrai ça plus tard (de toute façon, on n'a rien à y mettre).</p>
+            <img src="images/Inventory.png" alt="inventaire" class="update-img">
         </section>
 
         <section class="update">
-            <h2>Version 1.0 - Lancement Officiel</h2>
-            <p>Première version du jeu avec le mode solo et multijoueur.</p>
-            <img src="update1.0.jpg" alt="Lancement du jeu" class="update-img">
+            <h2>Création du menue principale</h2>
+            <p>J'ai juste mis un menu quoi...</p>
+            <img src="images/MainMenue.png" alt="Menue Principale" class="update-img">
         </section>
     </main>
     
