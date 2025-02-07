@@ -1,1 +1,47 @@
-Attendez ptn ! je suis en train de faire cette page de merde OK ?
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RevengeOfTheGod - Updates</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>RevengeOfTheGod - Mises à Jour</h1>
+        <button id="theme-toggle">🌙 Mode Sombre</button>
+    </header>
+    
+    <main>
+        <section class="update">
+            <h2>Version 1.1 - Améliorations du Gameplay</h2>
+            <p>Ajout d'un nouveau système de combat et correction de bugs.</p>
+            <img src="update1.1.jpg" alt="Nouveau gameplay" class="update-img">
+        </section>
+
+        <section class="update">
+            <h2>Version 1.0 - Lancement Officiel</h2>
+            <p>Première version du jeu avec le mode solo et multijoueur.</p>
+            <img src="update1.0.jpg" alt="Lancement du jeu" class="update-img">
+        </section>
+    </main>
+    
+    <script>
+        const toggleButton = document.getElementById("theme-toggle");
+        const body = document.body;
+        
+        function setTheme(theme) {
+            body.className = theme;
+            localStorage.setItem("theme", theme);
+            toggleButton.textContent = theme === "dark" ? "☀️ Mode Clair" : "🌙 Mode Sombre";
+        }
+        
+        toggleButton.addEventListener("click", () => {
+            const newTheme = body.classList.contains("dark") ? "light" : "dark";
+            setTheme(newTheme);
+        });
+        
+        setTheme(localStorage.getItem("theme") || "light");
+    </script>
+</body>
+</html>
