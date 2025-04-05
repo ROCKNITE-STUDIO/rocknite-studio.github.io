@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = await response.json();
                 alert(data.message);
                 if (data.message === 'Utilisateur créé avec succès.') {
-                    window.location.href = '/login/login.html';
+                    window.location.href = 'login.html';
                 }
             } catch (error) {
                 console.error('Erreur lors de l\'inscription:', error);
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.token) {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('name', data.name);
-                    window.location.href = '../point';
+                    window.location.href = 'protected.html';
                 } else {
                     alert('Identifiants incorrects. Veuillez réessayer.');
                 }
