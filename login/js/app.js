@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (registerForm) {
         registerForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Empêche la soumission par défaut
+            event.preventDefault();
 
             const email = document.getElementById('email').value;
             const mot_de_passe = document.getElementById('mot_de_passe').value;
@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/inscription', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        // Ajoutez ceci temporairement si vous testez localement (nécessite serveur compatible)
-                        'Access-Control-Allow-Origin': '*' 
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ email, mot_de_passe, nom })
                 });
@@ -54,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/connexion', {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -68,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const data = await response.json();
                 if (data.token) {
                     localStorage.setItem('token', data.token);
-                    localStorage.setItem('name', data.name); // Note : 'name' au lieu de 'nom' pour cohérence avec le serveur
+                    localStorage.setItem('name', data.name);
                     window.location.href = '../point';
                 } else {
                     alert('Identifiants incorrects. Veuillez réessayer.');
@@ -96,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/protege', {
                     method: 'GET',
-                    mode: 'no-cors',
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -108,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const data = await response.json();
                 if (data.message) {
-                    // Correction : 'nom' -> 'name' pour cohérence avec localStorage.setItem
                     messageElement.textContent = `${data.message} (Connecté en tant que ${localStorage.getItem('name')})`;
                 } else {
                     messageElement.textContent = 'Erreur d\'authentification';
@@ -116,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (error) {
                 console.error('Erreur lors de l\'accès à la page protégée:', error);
                 localStorage.removeItem('token');
-                localStorage.removeItem('name'); // Correction : 'nom' -> 'name'
+                localStorage.removeItem('name');
                 messageElement.textContent = 'Erreur d\'accès. Token supprimé.';
             }
         })();
@@ -124,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (logoutButton) {
             logoutButton.addEventListener('click', function() {
                 localStorage.removeItem('token');
-                localStorage.removeItem('name'); // Correction : 'nom' -> 'name'
+                localStorage.removeItem('name');
                 window.location.href = '/covoitealps/profile/login/index.html';
             });
         }
