@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const nom = document.getElementById('nom').value;
 
             try {
-                const response = await fetch('https://proxy.serveo.net/rocknite-login/inscription', {
+                const response = await fetch('https://proxy.serveo.net/inscription', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const mot_de_passe = document.getElementById('mot_de_passe').value;
 
             try {
-                const response = await fetch('https://proxy.serveo.net/rocknite-login/connexion', {
+                const response = await fetch('https://proxy.serveo.net/connexion', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         (async function() {
             try {
-                const response = await fetch('https://proxy.serveo.net/rocknite-login/protege', {
+                const response = await fetch('https://proxy.serveo.net/protege', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
