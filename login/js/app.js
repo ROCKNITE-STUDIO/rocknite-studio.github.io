@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const nom = document.getElementById('nom').value;
 
             try {
-                const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/inscription', {
+                const response = await fetch('https://proxy.serveo.net/rocknite-login/inscription', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const mot_de_passe = document.getElementById('mot_de_passe').value;
 
             try {
-                const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/connexion', {
+                const response = await fetch('https://proxy.serveo.net/rocknite-login/connexion', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         (async function() {
             try {
-                const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/protege', {
+                const response = await fetch('https://proxy.serveo.net/rocknite-login/protege', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -115,13 +115,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 messageElement.textContent = 'Erreur d\'accès. Token supprimé.';
             }
         })();
-
-        if (logoutButton) {
-            logoutButton.addEventListener('click', function() {
-                localStorage.removeItem('token');
-                localStorage.removeItem('name');
-                window.location.href = '/covoitealps/profile/login/index.html';
-            });
-        }
     }
 });
