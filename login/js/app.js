@@ -1,115 +1,129 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Gestion du formulaire d'inscription
     const registerForm = document.getElementById('register-form');
     
     if (registerForm) {
-        registerForm.addEventListener('submit', function(event) {
-            event.preventDefault();  // Empêche le comportement par défaut du formulaire
+        registerForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut
 
             const email = document.getElementById('email').value;
             const mot_de_passe = document.getElementById('mot_de_passe').value;
             const nom = document.getElementById('nom').value;
 
-            fetch('https://brown-goat-85.telebit.io/rocknite-login/inscription', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, mot_de_passe, nom })
-            })
-            .then(response => {
+            try {
+                const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/inscription', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // Ajoutez ceci temporairement si vous testez localement (nécessite serveur compatible)
+                        'Access-Control-Allow-Origin': '*' 
+                    },
+                    body: JSON.stringify({ email, mot_de_passe, nom })
+                });
+
                 if (!response.ok) {
-                    throw new Error('Erreur de réseau');
+                    throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
                 }
-                return response.json();
-            })
-            .then(data => {
+
+                const data = await response.json();
                 alert(data.message);
                 if (data.message === 'Utilisateur créé avec succès.') {
-                    window.location.href = '/login/login.html';  // Redirige vers la page de connexion après l'inscription
+                    window.location.href = '/login/login.html';
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Erreur lors de l\'inscription:', error);
-                alert('Une erreur est survenue lors de l\'inscription. Veuillez réessayer.');
-            });
+                if (error.message.includes('Failed to fetch')) {
+                    alert('Erreur de connexion au serveur. Vérifiez l\'URL, le réseau ou les restrictions CORS.');
+                } else {
+                    alert(`Erreur: ${error.message}`);
+                }
+            }
         });
     }
 
+    // Gestion du formulaire de connexion
     const loginForm = document.getElementById('login-form');
     
     if (loginForm) {
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();  // Empêche le comportement par défaut du formulaire
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
 
             const email = document.getElementById('email').value;
             const mot_de_passe = document.getElementById('mot_de_passe').value;
 
-            fetch('https://brown-goat-85.telebit.io/rocknite-login/connexion', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email, mot_de_passe })
-            })
-            .then(response => {
+            try {
+                const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/connexion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, mot_de_passe })
+                });
+
                 if (!response.ok) {
-                    throw new Error('Erreur de réseau');
+                    throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
                 }
-                return response.json();
-            })
-            .then(data => {
+
+                const data = await response.json();
                 if (data.token) {
-                    localStorage.setItem('token', data.token);  // Stocke le token
-                    localStorage.setItem('name', data.name);    // Stocke le nom
-                    window.location.href = '../point';  // Redirige après connexion
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('name', data.name); // Note : 'name' au lieu de 'nom' pour cohérence avec le serveur
+                    window.location.href = '../point';
                 } else {
                     alert('Identifiants incorrects. Veuillez réessayer.');
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Erreur lors de la connexion:', error);
-                alert('Une erreur est survenue lors de la connexion. Veuillez réessayer.');
-            });            
+                alert(`Erreur lors de la connexion: ${error.message}`);
+            }
         });
     }
 
+    // Gestion de la page protégée et déconnexion
     const messageElement = document.getElementById('message');
     const logoutButton = document.getElementById('logout-button');
     
     if (messageElement) {
         const token = localStorage.getItem('token');
 
-        fetch('https://brown-goat-85.telebit.io/rocknite-login/protege', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`
+        if (!token) {
+            messageElement.textContent = 'Aucun token trouvé. Veuillez vous connecter.';
+            return;
+        }
+
+        (async function() {
+            try {
+                const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/protege', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                if (data.message) {
+                    // Correction : 'nom' -> 'name' pour cohérence avec localStorage.setItem
+                    messageElement.textContent = `${data.message} (Connecté en tant que ${localStorage.getItem('name')})`;
+                } else {
+                    messageElement.textContent = 'Erreur d\'authentification';
+                }
+            } catch (error) {
+                console.error('Erreur lors de l\'accès à la page protégée:', error);
+                localStorage.removeItem('token');
+                localStorage.removeItem('name'); // Correction : 'nom' -> 'name'
+                messageElement.textContent = 'Erreur d\'accès. Token supprimé.';
             }
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Erreur de réseau');
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.message) {
-                messageElement.textContent = `${data.message} (Connecté en tant que ${localStorage.getItem('nom')})`;
-            } else {
-                messageElement.textContent = 'Erreur d\'authentification';
-            }
-        })
-        .catch(error => {
-            console.error('Erreur lors de l\'accès à la page protégée:', error);
-            localStorage.removeItem('token');
-            localStorage.removeItem('nom');
-            messageElement.textContent = 'Erreur lors de l\'accès à la page protégée. Token supprimé.';
-        });
+        })();
 
         if (logoutButton) {
             logoutButton.addEventListener('click', function() {
-                localStorage.removeItem('token');  // Supprime le token
-                localStorage.removeItem('nom');  // Supprime le nom de l'utilisateur
-                window.location.href = '/covoitealps/profile/login/index.html';  // Redirige vers la page de connexion
+                localStorage.removeItem('token');
+                localStorage.removeItem('name'); // Correction : 'nom' -> 'name'
+                window.location.href = '/covoitealps/profile/login/index.html';
             });
         }
     }
