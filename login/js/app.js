@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const mot_de_passe = document.getElementById('mot_de_passe').value;
             const nom = document.getElementById('nom').value;
 
-            fetch('https://institutis.serveo.net/inscription', {
+            fetch('https://brown-goat-85.telebit.io/rocknite-login/inscription', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('email').value;
             const mot_de_passe = document.getElementById('mot_de_passe').value;
 
-            fetch('https://institutis.serveo.net/connexion', {
+            fetch('https://brown-goat-85.telebit.io/rocknite-login/connexion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -59,8 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(data => {
                 if (data.token) {
-                    localStorage.setItem('token', data.token);  // Stocke le token dans le localStorage
-                    window.location.href = '/login/protected.html';  // Redirige vers la page protégée après la connexion
+                    localStorage.setItem('token', data.token);  // Stocke le token
+                    localStorage.setItem('name', data.name);    // Stocke le nom
+                    window.location.href = '../point';  // Redirige après connexion
                 } else {
                     alert('Identifiants incorrects. Veuillez réessayer.');
                 }
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error('Erreur lors de la connexion:', error);
                 alert('Une erreur est survenue lors de la connexion. Veuillez réessayer.');
-            });
+            });            
         });
     }
 
@@ -78,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (messageElement) {
         const token = localStorage.getItem('token');
 
-        fetch('https://institutis.serveo.net/protege', {
+        fetch('https://brown-goat-85.telebit.io/rocknite-login/protege', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -92,22 +93,23 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.message) {
-                messageElement.textContent = data.message;
+                messageElement.textContent = `${data.message} (Connecté en tant que ${localStorage.getItem('nom')})`;
             } else {
                 messageElement.textContent = 'Erreur d\'authentification';
             }
         })
         .catch(error => {
             console.error('Erreur lors de l\'accès à la page protégée:', error);
-            // Supprimer le token du localStorage en cas d'erreur
             localStorage.removeItem('token');
+            localStorage.removeItem('nom');
             messageElement.textContent = 'Erreur lors de l\'accès à la page protégée. Token supprimé.';
         });
 
         if (logoutButton) {
             logoutButton.addEventListener('click', function() {
-                localStorage.removeItem('token');  // Supprime le token du localStorage
-                window.location.href = '/login/login.html';  // Redirige vers la page de connexion
+                localStorage.removeItem('token');  // Supprime le token
+                localStorage.removeItem('nom');  // Supprime le nom de l'utilisateur
+                window.location.href = '/covoitealps/profile/login/index.html';  // Redirige vers la page de connexion
             });
         }
     }
