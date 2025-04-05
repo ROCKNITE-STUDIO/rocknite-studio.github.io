@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/connexion', {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 const response = await fetch('https://brown-goat-85.telebit.io/rocknite-login/protege', {
                     method: 'GET',
+                    mode: 'no-cors',
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
