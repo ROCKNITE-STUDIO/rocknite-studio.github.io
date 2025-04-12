@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         buyButton.addEventListener('click', (e) => {
             e.preventDefault();
             const email = localStorage.getItem('userEmail'); // Récupérer l'email du localStorage
-            const baseUrl = 'https://rocknite-studio.netlify.app';
+            const baseUrl = 'https://rocknite-studio.netlify.app/buy.html';
             const gameId = 'rocknite';
             
             // Construire l'URL avec l'ID
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Ajouter l'email seulement s'il existe et n'est pas vide
             if (email && email.trim() !== '') {
-                newUrl = `${baseUrl}/buy.html?id=${gameId}&email=${encodeURIComponent(email)}`;
+                newUrl = `${baseUrl}?id=${gameId}&email=${encodeURIComponent(email)}`;
             }
             
             console.log('Redirection vers :', newUrl); // Pour déboguer
