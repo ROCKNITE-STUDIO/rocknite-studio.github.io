@@ -4,15 +4,23 @@
         "creator": "Sneak0811",
         "version": "1.0",
         "price": "free",
-        "featured": true,
         "link": "https://rocknite-studio.github.io/game/MinosEscape",
         "image": "https://rocknite-studio.github.io/images/image1.png"
     },
     {
-        "title": "ROCKNITE",
+        "title": "ROCKNITE ALPHA",
         "creator": "Satanas1275",
         "version": "Alpha 1.2.1",
         "price": "free",
+        "featured": true,
+        "link": "https://rocknite-studio.github.io/game/ROCKNITE-ALPHA",
+        "image": "https://rocknite-studio.github.io/images/image3.png"
+    },
+    {
+        "title": "ROCKNITE",
+        "creator": "Satanas1275",
+        "version": "Precomande 1.0.0",
+        "price": "10€",
         "link": "https://rocknite-studio.github.io/game/ROCKNITE",
         "image": "https://rocknite-studio.github.io/images/image3.png"
     },
