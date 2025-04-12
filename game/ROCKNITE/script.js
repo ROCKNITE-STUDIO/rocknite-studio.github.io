@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (buyButton) {
         buyButton.addEventListener('click', (e) => {
             e.preventDefault();
-            const email = localStorage.getItem('userEmail'); // Récupérer l'email du localStorage
+            const email = localStorage.getItem('email'); // Récupérer l'email du localStorage
             const baseUrl = 'https://rocknite-studio.netlify.app';
             const gameId = 'rocknite';
             
