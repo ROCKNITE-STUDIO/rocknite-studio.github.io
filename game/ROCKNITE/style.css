@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #2e2d2d;
+    color: #bbfcfb;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header li {
+    margin: 0;
+}
+
+header a {
+    color: #bbfcfb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px;
+    flex-direction: column;
+}
+
+.game-container {
+    width: 90%;
+    max-width: 1200px;
+    position: relative;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a;
+    padding: 20px;
+}
+
+.game-image img {
+    width: 65%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.game-content {
+    width: 35%;
+    text-align: left;
+    padding-left: 20px;
+    color: #fff;
+}
+
+.game-content small {
+    font-size: 1.2rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.game-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.game-content p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.game-content .price {
+    font-size: 1.1rem;
+    color: #bbfcfb;
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #f0f0f0;
+}
