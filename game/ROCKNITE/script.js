@@ -4,10 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (buyButton) {
         buyButton.addEventListener('click', (e) => {
             e.preventDefault();
-            const email = localStorage.getItem('userEmail') || '';
+            const email = localStorage.getItem('userEmail');
             const baseUrl = 'https://rocknite-studio.netlify.app';
             const gameId = 'rocknite';
-            const newUrl = `${baseUrl}?email=${encodeURIComponent(email)}&id=${gameId}`;
+            let newUrl = `${baseUrl}?id=${gameId}`;
+            
+            // Ajouter l'email à l'URL uniquement s'il existe
+            if (email) {
+                newUrl += `&email=${encodeURIComponent(email)}`;
+            }
+            
             window.location.href = newUrl;
         });
     }
