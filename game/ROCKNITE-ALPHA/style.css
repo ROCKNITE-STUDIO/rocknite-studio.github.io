@@ -41,15 +41,14 @@ header a {
 
 header a:hover {
     color: #ffffff;
+}
 
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: #000000;
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding-top: 60px; /* Pour éviter que le contenu ne soit caché sous la barre de navigation */
 }
 
 .game-container {
