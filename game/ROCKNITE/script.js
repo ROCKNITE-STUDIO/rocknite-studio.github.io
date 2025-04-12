@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             let newUrl = `${baseUrl}?id=${gameId}`;
             if (email && email.trim() !== '') {
-                newUrl = `${baseUrl}?id=${gameId}&email=${encodeURIComponent(email)}`;
+                newUrl = `${baseUrl}/${gameId}?email=${encodeURIComponent(email)}`;
             }
             
             console.log('Redirection vers :', newUrl);
