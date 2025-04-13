@@ -43,6 +43,19 @@ header a:hover {
     color: #ffffff;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px;
+    flex-direction: column;
+}
+
 /* Alignement du jeu en vedette */
 .featured-game {
     width: 80%;
