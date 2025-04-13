@@ -62,14 +62,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0; /* Ajuste le padding ici pour éliminer l'espace supplémentaire */
+    padding: 0 20px; /* Ajoute un peu de padding autour de la zone du contenu */
 }
 
 .game-content {
     position: relative;
     max-width: 600px;
     color: #fff;
-    padding: 20px;
+    padding: 20px; /* Réajuste le padding autour du texte */
 }
 
 .game-content small {
@@ -103,6 +103,7 @@ body {
     display: flex;
     gap: 20px;
     margin-top: 20px;
+    padding-top: 20px; /* Ajoute un peu de padding pour l'espacement entre le texte et les boutons */
 }
 
 .btn {
@@ -119,6 +120,24 @@ body {
 }
 
 .btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.btnt {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btnt:hover {
     background-color: #fff;
     color: #000;
 }
