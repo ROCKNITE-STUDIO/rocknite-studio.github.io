@@ -4,17 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #000000; /* Fond noir */
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding-top: 80px; /* Espace pour la barre de navigation */
-}
-
 ul {
     list-style: none;
     padding: 0;
@@ -24,7 +13,7 @@ ul {
 header {
     background-color: #2e2d2d;
     color: #bbfcfb;
-    padding: 15px 20px;
+    padding: 10px 20px;
     width: 100%;
     position: fixed;
     top: 0;
@@ -38,17 +27,21 @@ header ul {
     gap: 20px;
 }
 
+header li {
+    margin: 0;
+}
+
 header a {
     color: #bbfcfb;
     text-decoration: none;
-    font-weight: bold;
+    font-size: 16px;
     transition: color 0.3s;
+    font-weight: bold;
 }
 
 header a:hover {
     color: #ffffff;
 }
-
 /* Conteneur pour les cartes de support */
 .container {
     max-width: 1200px; /* Augmenter la largeur */
