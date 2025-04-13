@@ -12,7 +12,7 @@ function renderGames(games) {
     const featuredGame = games.find(game => game.featured);
     if (featuredGame) {
         featuredGameElement.innerHTML = `
-            <a href="${featuredGame.link}" target="_blank">
+            <a href="${featuredGame.link}">
                 <div class="featured-content">
                     <img src="${featuredGame.image}" alt="${featuredGame.title}">
                     <div class="info">
@@ -31,7 +31,7 @@ function renderGames(games) {
             const gameCard = document.createElement('div');
             gameCard.classList.add('game-card');
             gameCard.innerHTML = `
-                <a href="${game.link}" target="_blank">
+                <a href="${game.link}">
                     <img src="${game.image}" alt="${game.title}">
                     <div class="details">
                         <h3>${game.title}</h3>
