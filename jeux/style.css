@@ -56,6 +56,10 @@ body {
     flex-direction: column;
 }
 
+h3 {
+    color: #ffffff;
+}
+
 /* Alignement du jeu en vedette */
 .featured-game {
     width: 80%;
