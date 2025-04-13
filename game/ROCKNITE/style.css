@@ -48,7 +48,8 @@ body {
     line-height: 1.6;
     background-color: #000000;
     min-height: 100vh;
-    padding-top: 60px; /* Pour éviter que le contenu ne soit caché sous la barre de navigation */
+    overflow: hidden; /* Empêche le défilement */
+    padding-top: 0; /* Supprime le padding du top */
 }
 
 .game-container {
@@ -61,7 +62,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 40px;
+    padding: 0; /* Ajuste le padding ici pour éliminer l'espace supplémentaire */
 }
 
 .game-content {
