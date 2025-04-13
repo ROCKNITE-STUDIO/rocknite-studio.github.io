@@ -1,49 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-	<title>Minos Escape</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-	
-	<!-- Made with Construct, the game and app creator :: https://www.construct.net -->
-	<meta name="generator" content="Scirra Construct">
-
-
-
-	<link rel="manifest" href="appmanifest.json">
-	<link rel="apple-touch-icon" sizes="128x128" href="icons/Icône-128.png">
-	<link rel="apple-touch-icon" sizes="256x256" href="icons/Icône-256.png">
-	<link rel="apple-touch-icon" sizes="512x512" href="icons/Icône-512.png">
-	<link rel="icon" type="image/png" href="icons/Icône-512.png">
-
-	<link rel="stylesheet" href="style.css">
-
-
-
-</head> 
- 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROCKNITE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
+    <header>
+        <ul>
+            <li><a href="https://rocknite-studio.github.io/">Accueil</a></li>
+            <li><a href="https://rocknite-studio.github.io/jeux">Jeux</a></li>
+            <li><a href="https://rocknite-studio.github.io/news">News</a></li>
+            <li><a href="https://rocknite-studio.github.io/SUPPORT">Assistance</a></li>
+            <li><a href="https://rocknite-studio.github.io/login">Compte</a></li>
+        </ul>
+    </header>
 
-	
+    <div class="game-container">
+        <div class="game-content">
+            <small>Version 1.0</small>
+            <h1>Minos Escape</h1>
+            <p>
+                MinosEscape
+            </p>
+            <p class="price">Prix : gratuit</p>
+        </div>
+        <div class="buttons">
+            <a href="play" class="btnt">Jouer</a>
+            <a href="https://rocknite-studio.github.io/support-dev/Sneak0811" class="btn">Supportez Sneak0811</a>
+        </div>
+    </div>
 
-<script>
-if (location.protocol.substr(0, 4) === "file")
-{
-	alert("Web exports won't work until you upload them. (When running on the file: protocol, browsers block many features from working for security reasons.)");
-}
-</script>
-	
-	<noscript>
-		<div id="notSupportedWrap">
-			<h2 id="notSupportedTitle">This content requires JavaScript</h2>
-			<p class="notSupportedMessage">JavaScript appears to be disabled. Please enable it to view this content.</p>
-		</div>
-	</noscript>
-	<script src="scripts/modernjscheck.js"></script>
-	<script src="scripts/supportcheck.js"></script>
-	<script src="scripts/offlineclient.js" type="module"></script>
-	<script src="scripts/main.js" type="module"></script>
-	<script src="scripts/register-sw.js" type="module"></script>
-
-</body> 
+    <script src="script.js"></script>
+</body>
 </html>

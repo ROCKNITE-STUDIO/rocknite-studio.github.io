@@ -1,111 +1,144 @@
-html, body {
-	padding: 0;
-	margin: 0;
-	overflow: hidden;
-	height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #2e2d2d;
+    color: #bbfcfb;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header li {
+    margin: 0;
+}
+
+header a {
+    color: #bbfcfb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ffffff;
 }
 
 body {
-	background: #000000;
-	color: white;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    min-height: 100vh;
+    overflow: hidden; /* Empêche le défilement */
+    padding-top: 0; /* Supprime le padding du top */
 }
 
-html, body, canvas {
-	touch-action-delay: none;
-	touch-action: none;
+.game-container {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://rocknite-studio.github.io/images/image1.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px; /* Ajoute un peu de padding autour de la zone du contenu */
 }
 
-canvas, .c3htmlwrap {
-	position: absolute;
+.game-content {
+    position: relative;
+    max-width: 600px;
+    color: #fff;
+    padding: 20px; /* Réajuste le padding autour du texte */
 }
 
-.c3htmlwrap {
-	contain: strict;
+.game-content small {
+    font-size: 1.2rem;
+    color: #aaa;
+    display: block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
-.c3overlay {
-	pointer-events: none;
+.game-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-.c3htmlwrap > * {
-	pointer-events: auto;
+.game-content p {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 20px;
 }
 
-/* HACK - work around elements being selectable only in iOS WKWebView for some reason */
-html[ioswebview] .c3htmlwrap,
-html[ioswebview] canvas {
-	-webkit-user-select: none;
-	user-select: none;
+.game-content .price {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: bold;
 }
 
-html[ioswebview] .c3htmlwrap > * {
-	-webkit-user-select: auto;
-	user-select: auto;
+.buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    padding-top: 20px; /* Ajoute un peu de padding pour l'espacement entre le texte et les boutons */
 }
 
-#notSupportedWrap {
-	margin: 2em auto 1em auto;
-	width: 75%;
-	max-width: 45em;
-	border: 2px solid #aaa;
-	border-radius: 1em;
-	padding: 2em;
-	background-color: #f0f0f0;
-	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-	color: black;
+.btn {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-#notSupportedTitle {
-	font-size: 1.8em;
+.btn:hover {
+    background-color: #fff;
+    color: #000;
 }
 
-.notSupportedMessage {
-	font-size: 1.2em;
+.btnt {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.notSupportedMessage em {
-	color: #888;
-}
-
-/* bbcode styles */
-.bbCodeH1 {
-	font-size: 2em;
-	font-weight: bold;
-}
-
-.bbCodeH2 {
-	font-size: 1.5em;
-	font-weight: bold;
-}
-
-.bbCodeH3 {
-	font-size: 1.25em;
-	font-weight: bold;
-}
-
-.bbCodeH4 {
-	font-size: 1.1em;
-	font-weight: bold;
-}
-
-.bbCodeItem::before {
-	content: " • ";
-}
-
-/* For text icons converted to HTML: size the height to the line height
-   preserving the aspect ratio. Also add position: relative as that allows
-   just adding a 'top' style for the iconoffsety style. */
-.c3-text-icon {
-	height: 1em;
-	width: auto;
-	position: relative;
-}
-
-/* screen reader text */
-.c3-screen-reader-text {
-	position: absolute;
-	width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
+.btnt:hover {
+    background-color: #fff;
+    color: #000;
 }

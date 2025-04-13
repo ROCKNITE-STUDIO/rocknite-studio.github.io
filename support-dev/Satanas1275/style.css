@@ -1,0 +1,102 @@
+/* Partie déjà dans ton style.css (à garder) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background-color: #2e2d2d;
+    color: #bbfcfb;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+header li {
+    margin: 0;
+}
+
+header a {
+    color: #bbfcfb;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Mise en page des cartes de support */
+.games-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.game-card {
+    background-color: #2e2d2d;
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+}
+
+.game-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.details h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: #00d166;
+}
