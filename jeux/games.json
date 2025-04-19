@@ -14,7 +14,7 @@
         "price": "free",
         "featured": true,
         "link": "https://rocknite-studio.github.io/game/ROCKNITE-ALPHA",
-        "image": "https://rocknite-studio.github.io/images/image3.png"
+        "image": "https://rocknite-studio.github.io/images/rocknite/image3.png"
     },
     {
         "title": "ROCKNITE",
@@ -22,7 +22,7 @@
         "version": "Precomande 1.0.0",
         "price": "10€",
         "link": "https://rocknite-studio.github.io/game/ROCKNITE",
-        "image": "https://rocknite-studio.github.io/images/image3.png"
+        "image": "https://rocknite-studio.github.io/images/rocknite/image3.png"
     },
     {
         "title": "SkyPlatform",
