@@ -68,24 +68,36 @@ if (loginForm) {
 // Gestion de la page protégée
 const messageElement = document.getElementById('message');
 if (messageElement) {
-    if (!isAuthenticated()) {
+    if (typeof isAuthenticated !== 'function') {
+        console.error('isAuthenticated is not defined. Ensure token.js is loaded.');
+        window.location.href = 'login.html';
+    } else if (!isAuthenticated()) {
         window.location.href = 'login.html';
     } else {
-        fetch(`${API_URL}/protege`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${getToken()}`,
-            },
-        })
-            .then(handleError)
-            .then(data => {
-                messageElement.textContent = data.message;
+        if (typeof getToken !== 'function') {
+            console.error('getToken is not defined. Ensure token.js is loaded.');
+            window.location.href = 'login.html';
+        } else {
+            fetch(`${API_URL}/protege`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${getToken()}`,
+                },
             })
-            .catch(error => {
-                alert(error.message);
-                removeToken();
-                window.location.href = 'login.html';
-            });
+                .then(handleError)
+                .then(data => {
+                    messageElement.textContent = data.message;
+                })
+                .catch(error => {
+                    alert(error.message);
+                    if (typeof removeToken === 'function') {
+                        removeToken();
+                    } else {
+                        console.error('removeToken is not defined. Ensure token.js is loaded.');
+                    }
+                    window.location.href = 'login.html';
+                });
+        }
     }
 }
 
