@@ -112,52 +112,51 @@ if (messageElement) {
         console.error('Fonctions requises (isAuthenticated, verifyToken, getToken, removeToken) non définies. Vérifiez que token.js est chargé.');
         alert('Erreur de chargement des scripts. Veuillez rafraîchir la page.');
         window.location.href = 'login.html';
-        return;
-    }
-
-    verifyToken().then(isValid => {
-        if (!isValid) {
-            console.log('Redirection vers login.html car le token est invalide ou absent');
+    } else {
+        verifyToken().then(isValid => {
+            if (!isValid) {
+                console.log('Redirection vers login.html car le token est invalide ou absent');
+                window.location.href = 'login.html';
+            } else {
+                console.log('Token valide, requête vers /protege');
+                fetch(`${API_URL}/protege`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${getToken()}`,
+                    },
+                })
+                    .then(response => {
+                        console.log('Statut de la réponse /protege:', response.status);
+                        return handleError(response);
+                    })
+                    .then(data => {
+                        console.log('Succès de la requête /protege:', data);
+                        messageElement.textContent = data.message || 'Bienvenue !';
+                        const usernameElement = document.getElementById('username');
+                        const emailElement = document.getElementById('email');
+                        if (usernameElement && emailElement) {
+                            usernameElement.textContent = localStorage.getItem('user_name') || 'Inconnu';
+                            emailElement.textContent = localStorage.getItem('user_email') || 'Inconnu';
+                        } else {
+                            console.warn('Éléments DOM username et/ou email introuvables dans protected.html');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Échec de la requête /protege:', error.message);
+                        alert(error.message);
+                        if (typeof removeToken === 'function') {
+                            removeToken();
+                            console.log('Token supprimé suite à une erreur');
+                        }
+                        window.location.href = 'login.html';
+                    });
+            }
+        }).catch(error => {
+            console.error('Erreur lors de la vérification du token:', error);
+            alert('Erreur lors de la vérification de l\'authentification.');
             window.location.href = 'login.html';
-        } else {
-            console.log('Token valide, requête vers /protege');
-            fetch(`${API_URL}/protege`, {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${getToken()}`,
-                },
-            })
-                .then(response => {
-                    console.log('Statut de la réponse /protege:', response.status);
-                    return handleError(response);
-                })
-                .then(data => {
-                    console.log('Succès de la requête /protege:', data);
-                    messageElement.textContent = data.message || 'Bienvenue !';
-                    const usernameElement = document.getElementById('username');
-                    const emailElement = document.getElementById('email');
-                    if (usernameElement && emailElement) {
-                        usernameElement.textContent = localStorage.getItem('user_name') || 'Inconnu';
-                        emailElement.textContent = localStorage.getItem('user_email') || 'Inconnu';
-                    } else {
-                        console.warn('Éléments DOM username et/ou email introuvables dans protected.html');
-                    }
-                })
-                .catch(error => {
-                    console.error('Échec de la requête /protege:', error.message);
-                    alert(error.message);
-                    if (typeof removeToken === 'function') {
-                        removeToken();
-                        console.log('Token supprimé suite à une erreur');
-                    }
-                    window.location.href = 'login.html';
-                });
-        }
-    }).catch(error => {
-        console.error('Erreur lors de la vérification du token:', error);
-        alert('Erreur lors de la vérification de l\'authentification.');
-        window.location.href = 'login.html';
-    });
+        });
+    }
 }
 
 // Gestion de la déconnexion
