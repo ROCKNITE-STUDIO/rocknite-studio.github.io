@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         registerForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
-            const email =  const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value;
             const mot_de_passe = document.getElementById('mot_de_passe').value;
             const nom = document.getElementById('nom').value;
 
