@@ -5,7 +5,7 @@ const API_URL = 'https://rocknite-login.serveo.net';
 function handleError(response) {
     if (!response.ok) {
         return response.json().then(data => {
-            throw new Error(data.message || 'Une erreur est survenue');
+            throw new Error(data.message || `Erreur HTTP ${response.status}`);
         });
     }
     return response.json();
@@ -58,8 +58,14 @@ if (loginForm) {
             const data = await handleError(response);
             if (typeof saveToken === 'function') {
                 console.log('Token received:', data.token);
+                console.log('Name received:', data.name);
+                console.log('Email:', email);
                 saveToken(data.token);
+                localStorage.setItem('user_email', email);
+                localStorage.setItem('user_name', data.name);
                 console.log('Token saved in localStorage:', localStorage.getItem('access_token'));
+                console.log('Email saved in localStorage:', localStorage.getItem('user_email'));
+                console.log('Name saved in localStorage:', localStorage.getItem('user_name'));
                 alert('Connexion réussie !');
                 window.location.href = 'protected.html';
             } else {
@@ -84,15 +90,26 @@ if (messageElement) {
             console.log('Redirecting to login.html because user is not authenticated');
             window.location.href = 'login.html';
         } else {
+            console.log('Fetching /protege with token:', localStorage.getItem('access_token'));
             fetch(`${API_URL}/protege`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${getToken()}`,
                 },
             })
-                .then(handleError)
+                .then(response => {
+                    console.log('Fetch /protege response status:', response.status);
+                    return handleError(response);
+                })
                 .then(data => {
+                    console.log('Fetch /protege success:', data);
                     messageElement.textContent = data.message;
+                    const usernameElement = document.getElementById('username');
+                    const emailElement = document.getElementById('email');
+                    if (usernameElement && emailElement) {
+                        usernameElement.textContent = localStorage.getItem('user_name') || 'Inconnu';
+                        emailElement.textContent = localStorage.getItem('user_email') || 'Inconnu';
+                    }
                 })
                 .catch(error => {
                     console.error('Fetch /protege failed:', error.message);
@@ -115,7 +132,9 @@ if (logoutButton) {
     logoutButton.addEventListener('click', () => {
         if (typeof removeToken === 'function') {
             removeToken();
-            console.log('Token removed on logout');
+            localStorage.removeItem('user_email');
+            localStorage.removeItem('user_name');
+            console.log('Token, email, and name removed on logout');
         } else {
             console.error('removeToken is not defined. Ensure token.js is loaded.');
         }
