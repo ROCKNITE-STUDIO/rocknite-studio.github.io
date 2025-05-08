@@ -1,5 +1,5 @@
-// app.js
-const API_URL = 'https://rocknite-login.serveo.net'; // Remplacez par l'URL de votre backend Flask
+// js/app.js
+const API_URL = 'https://rocknite-login.serveo.net';
 
 // Fonction pour gérer les erreurs
 function handleError(response) {
@@ -56,9 +56,15 @@ if (loginForm) {
             });
 
             const data = await handleError(response);
-            saveToken(data.token);
-            alert('Connexion réussie !');
-            window.location.href = 'protected.html';
+            if (typeof saveToken === 'function') {
+                console.log('Token received:', data.token);
+                saveToken(data.token);
+                console.log('Token saved in localStorage:', localStorage.getItem('access_token'));
+                alert('Connexion réussie !');
+                window.location.href = 'protected.html';
+            } else {
+                throw new Error('saveToken is not defined. Please check token.js.');
+            }
         } catch (error) {
             alert(error.message);
         }
@@ -71,11 +77,11 @@ if (messageElement) {
     if (typeof isAuthenticated !== 'function') {
         console.error('isAuthenticated is not defined. Ensure token.js is loaded.');
         window.location.href = 'login.html';
-    } else if (!isAuthenticated()) {
-        window.location.href = 'login.html';
     } else {
-        if (typeof getToken !== 'function') {
-            console.error('getToken is not defined. Ensure token.js is loaded.');
+        console.log('Token in localStorage:', localStorage.getItem('access_token'));
+        console.log('isAuthenticated:', isAuthenticated());
+        if (!isAuthenticated()) {
+            console.log('Redirecting to login.html because user is not authenticated');
             window.location.href = 'login.html';
         } else {
             fetch(`${API_URL}/protege`, {
@@ -89,9 +95,11 @@ if (messageElement) {
                     messageElement.textContent = data.message;
                 })
                 .catch(error => {
+                    console.error('Fetch /protege failed:', error.message);
                     alert(error.message);
                     if (typeof removeToken === 'function') {
                         removeToken();
+                        console.log('Token removed due to fetch error');
                     } else {
                         console.error('removeToken is not defined. Ensure token.js is loaded.');
                     }
@@ -105,7 +113,12 @@ if (messageElement) {
 const logoutButton = document.getElementById('logout-button');
 if (logoutButton) {
     logoutButton.addEventListener('click', () => {
-        removeToken();
+        if (typeof removeToken === 'function') {
+            removeToken();
+            console.log('Token removed on logout');
+        } else {
+            console.error('removeToken is not defined. Ensure token.js is loaded.');
+        }
         window.location.href = 'login.html';
     });
 }
