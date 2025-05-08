@@ -1,10 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Helper function to get query parameters from URL
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
     // Gestion du formulaire d'inscription
     const registerForm = document.getElementById('register-form');
     
@@ -12,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         registerForm.addEventListener('submit', async function(event) {
             event.preventDefault();
 
-            const email =  const email = document.getElementById('email').value;
+            const email = document.getElementById('email').value;
             const mot_de_passe = document.getElementById('mot_de_passe').value;
             const nom = document.getElementById('nom').value;
 
@@ -56,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const mot_de_passe = document.getElementById('mot_de_passe').value;
 
             try {
-                const loginResponse = await fetch('https://rocknite-login.serveo.net/connexion', {
+                const response = await fetch('https://rocknite-login.serveo.net/connexion', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -64,46 +58,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     body: JSON.stringify({ email, mot_de_passe })
                 });
 
-                if (!loginResponse.ok) {
-                    throw new Error(`Erreur HTTP: ${loginResponse.status} ${loginResponse.statusText}`);
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
                 }
 
-                const loginData = await loginResponse.json();
-                if (loginData.token) {
-                    localStorage.setItem('token', loginData.token);
-                    localStorage.setItem('name', loginData.name);
-
-                    // Fetch additional user data from /profile
-                    const profileResponse = await fetch('https://rocknite-login.serveo.net/profile', {
-                        method: 'GET',
-                        headers: {
-                            'Authorization': `Bearer ${loginData.token}`,
-                            'Content-Type': 'application/json'
-                        }
-                    });
-
-                    if (!profileResponse.ok) {
-                        throw new Error(`Erreur HTTP: ${profileResponse.status} ${profileResponse.statusText}`);
-                    }
-
-                    const profileData = await profileResponse.json();
-
-                    // Check for redirect-api parameter
-                    const redirectApi = getQueryParam('redirect-api');
-                    if (redirectApi) {
-                        // Construct redirect URL with query parameters
-                        const redirectUrl = new URL(redirectApi);
-                        redirectUrl.searchParams.append('email', profileData.email);
-                        redirectUrl.searchParams.append('token', loginData.token);
-                        redirectUrl.searchParams.append('username', profileData.name);
-                        redirectUrl.searchParams.append('argent', profileData.argent);
-                        redirectUrl.searchParams.append('jeux_possedes', JSON.stringify(profileData.jeux_possedes));
-
-                        window.location.href = redirectUrl.toString();
-                    } else {
-                        // Default redirect if no redirect-api parameter
-                        window.location.href = 'protected.html';
-                    }
+                const data = await response.json();
+                if (data.token) {
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('name', data.name);
+                    window.location.href = 'protected.html';
                 } else {
                     alert('Identifiants incorrects. Veuillez réessayer.');
                 }
