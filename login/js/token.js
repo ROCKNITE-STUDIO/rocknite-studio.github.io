@@ -1,7 +1,16 @@
-// Vérifie si un token est présent dans le localStorage
-const token = localStorage.getItem('token');
+// js/token.js
+function saveToken(token) {
+    localStorage.setItem('access_token', token);
+}
 
-// Si un token est trouvé, redirige vers la page protégée
-if (token) {
-    window.location.href = 'https://rocknite-studio.github.io/login/protected.html';
+function getToken() {
+    return localStorage.getItem('access_token');
+}
+
+function removeToken() {
+    localStorage.removeItem('access_token');
+}
+
+function isAuthenticated() {
+    return !!getToken();
 }
