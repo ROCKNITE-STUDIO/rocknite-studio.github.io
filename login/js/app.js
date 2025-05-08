@@ -69,7 +69,7 @@ if (loginForm) {
                 alert('Connexion réussie !');
                 window.location.href = 'protected.html';
             } else {
-                throw new Error('saveToken is not defined. Please check token.js.');
+                throw new Error('saveToken is not défini. Vérifiez token.js.');
             }
         } catch (error) {
             alert(error.message);
@@ -84,13 +84,14 @@ if (messageElement) {
         console.error('isAuthenticated is not defined. Ensure token.js is loaded.');
         window.location.href = 'login.html';
     } else {
-        console.log('Token in localStorage:', localStorage.getItem('access_token'));
-        console.log('isAuthenticated:', isAuthenticated());
+        const token = localStorage.getItem('access_token');
+        console.log('Checking authentication, token in localStorage:', token);
+        console.log('isAuthenticated result:', isAuthenticated());
         if (!isAuthenticated()) {
             console.log('Redirecting to login.html because user is not authenticated');
             window.location.href = 'login.html';
         } else {
-            console.log('Fetching /protege with token:', localStorage.getItem('access_token'));
+            console.log('User is authenticated, fetching /protege with token:', token);
             fetch(`${API_URL}/protege`, {
                 method: 'GET',
                 headers: {
@@ -132,8 +133,6 @@ if (logoutButton) {
     logoutButton.addEventListener('click', () => {
         if (typeof removeToken === 'function') {
             removeToken();
-            localStorage.removeItem('user_email');
-            localStorage.removeItem('user_name');
             console.log('Token, email, and name removed on logout');
         } else {
             console.error('removeToken is not defined. Ensure token.js is loaded.');
