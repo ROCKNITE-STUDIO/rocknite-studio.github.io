@@ -1,119 +1,99 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Gestion du formulaire d'inscription
-    const registerForm = document.getElementById('register-form');
-    
-    if (registerForm) {
-        registerForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
+// app.js
+const API_URL = 'https://rocknite-login.serveo.net'; // Remplacez par l'URL de votre backend Flask
 
-            const email = document.getElementById('email').value;
-            const mot_de_passe = document.getElementById('mot_de_passe').value;
-            const nom = document.getElementById('nom').value;
-
-            try {
-                const response = await fetch('https://rocknite-login.serveo.net/inscription', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, mot_de_passe, nom })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
-                }
-
-                const data = await response.json();
-                alert(data.message);
-                if (data.message === 'Utilisateur créé avec succès.') {
-                    window.location.href = 'login.html';
-                }
-            } catch (error) {
-                console.error('Erreur lors de l\'inscription:', error);
-                if (error.message.includes('Failed to fetch')) {
-                    alert('Erreur de connexion au serveur. Vérifiez l\'URL, le réseau ou les restrictions CORS.');
-                } else {
-                    alert(`Erreur: ${error.message}`);
-                }
-            }
+// Fonction pour gérer les erreurs
+function handleError(response) {
+    if (!response.ok) {
+        return response.json().then(data => {
+            throw new Error(data.message || 'Une erreur est survenue');
         });
     }
+    return response.json();
+}
 
-    // Gestion du formulaire de connexion
-    const loginForm = document.getElementById('login-form');
-    
-    if (loginForm) {
-        loginForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
+// Gestion du formulaire d'inscription
+const registerForm = document.getElementById('register-form');
+if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const mot_de_passe = document.getElementById('mot_de_passe').value;
+        const nom = document.getElementById('nom').value;
 
-            const email = document.getElementById('email').value;
-            const mot_de_passe = document.getElementById('mot_de_passe').value;
+        try {
+            const response = await fetch(`${API_URL}/inscription`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, mot_de_passe, nom }),
+            });
 
-            try {
-                const response = await fetch('https://rocknite-login.serveo.net/connexion', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, mot_de_passe })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
-                }
-
-                const data = await response.json();
-                if (data.token) {
-                    localStorage.setItem('token', data.token);
-                    localStorage.setItem('name', data.name);
-                    window.location.href = 'protected.html';
-                } else {
-                    alert('Identifiants incorrects. Veuillez réessayer.');
-                }
-            } catch (error) {
-                console.error('Erreur lors de la connexion:', error);
-                alert(`Erreur lors de la connexion: ${error.message}`);
-            }
-        });
-    }
-
-    // Gestion de la page protégée et déconnexion
-    const messageElement = document.getElementById('message');
-    const logoutButton = document.getElementById('logout-button');
-    
-    if (messageElement) {
-        const token = localStorage.getItem('token');
-
-        if (!token) {
-            messageElement.textContent = 'Aucun token trouvé. Veuillez vous connecter.';
-            return;
+            const data = await handleError(response);
+            alert(data.message);
+            window.location.href = 'login.html';
+        } catch (error) {
+            alert(error.message);
         }
+    });
+}
 
-        (async function() {
-            try {
-                const response = await fetch('https://rocknite-login.serveo.net/protege', {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+// Gestion du formulaire de connexion
+const loginForm = document.getElementById('login-form');
+if (loginForm) {
+    loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const mot_de_passe = document.getElementById('mot_de_passe').value;
 
-                if (!response.ok) {
-                    throw new Error(`Erreur HTTP: ${response.status} ${response.statusText}`);
-                }
+        try {
+            const response = await fetch(`${API_URL}/connexion`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, mot_de_passe }),
+            });
 
-                const data = await response.json();
-                if (data.message) {
-                    messageElement.textContent = `${data.message} (Connecté en tant que ${localStorage.getItem('name')})`;
-                } else {
-                    messageElement.textContent = 'Erreur d\'authentification';
-                }
-            } catch (error) {
-                console.error('Erreur lors de l\'accès à la page protégée:', error);
-                localStorage.removeItem('token');
-                localStorage.removeItem('name');
-                messageElement.textContent = 'Erreur d\'accès. Token supprimé.';
-            }
-        })();
+            const data = await handleError(response);
+            saveToken(data.token);
+            alert('Connexion réussie !');
+            window.location.href = 'protected.html';
+        } catch (error) {
+            alert(error.message);
+        }
+    });
+}
+
+// Gestion de la page protégée
+const messageElement = document.getElementById('message');
+if (messageElement) {
+    if (!isAuthenticated()) {
+        window.location.href = 'login.html';
+    } else {
+        fetch(`${API_URL}/protege`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${getToken()}`,
+            },
+        })
+            .then(handleError)
+            .then(data => {
+                messageElement.textContent = data.message;
+            })
+            .catch(error => {
+                alert(error.message);
+                removeToken();
+                window.location.href = 'login.html';
+            });
     }
-});
+}
+
+// Gestion de la déconnexion
+const logoutButton = document.getElementById('logout-button');
+if (logoutButton) {
+    logoutButton.addEventListener('click', () => {
+        removeToken();
+        window.location.href = 'login.html';
+    });
+}
