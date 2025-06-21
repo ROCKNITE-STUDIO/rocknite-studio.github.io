@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROCKNITE CONSOLE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: #0d0d0d;
+      color: #f0f0f0;
+    }
+    header {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #00ffff;
+    }
+    nav a {
+      color: #00ffff;
+      margin: 0 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      color: #fff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+    nav a:active {
+      transform: scale(1.1);
+    }
+    nav {
+      margin-top: 10px;
+    }
+    .section {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #00ffff;
+    }
+    .btn {
+      background: #00ffff;
+      color: black;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 20px;
+    }
+    footer {
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-top: 2px solid #00ffff;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ROCKNITE CONSOLE</h1>
+    <p>Conçue par des gamers, pour des gamers</p>
+    <nav>
+      <a href="#concept">Concept</a>
+      <a href="#materiel">Matériel</a>
+      <a href="#os">OS & Mods</a>
+      <a href="#support">Support</a>
+    </nav>
+  </header>
+
+  <section class="section" id="concept">
+    <h2>Le Concept</h2>
+    <p>La ROCKNITE CONSOLE est une console portable et modulaire, conçue pour être ouverte, évolutive, et pensée pour les mods. Contrairement aux consoles classiques, elle permet de changer ses composants, de personnaliser son système, et de rester accessible aux bidouilleurs comme aux gamers.</p>
+    <p>Deux CPU : l'un pour l'interface/menu et la gestion des manettes, l'autre pour les jeux. Résultat ? Si le jeu crash, le menu continue de fonctionner. Fini les freezes comme sur la Switch 1 ou Zorin OS !</p>
+  </section>
+
+  <section class="section" id="materiel">
+    <h2>Matériel Modulaire</h2>
+    <p>Chaque composant de la console est pensé pour être facilement remplaçable : écran, processeur, mémoire, stockage, manettes détachables... Plus besoin de jeter toute la console pour une mise à niveau.</p>
+  </section>
+
+  <section class="section" id="os">
+    <h2>OS Custom et Architecture</h2>
+    <p>L'OS de la ROCKNITE CONSOLE est entièrement custom, basé sur Ubuntu Server, et développé avec <strong>Electron + NodeJS non compilé</strong> pour un modding extrême. Tout utilisateur peut modifier, améliorer ou adapter l'interface selon ses besoins sans avoir à recompiler quoi que ce soit. C’est un OS fait pour évoluer avec sa communauté.</p>
+    <p>Le système est divisé en 3 dossiers principaux :</p>
+    <ul>
+      <li><strong>boot/</strong> : vérifie la stabilité du système avant de charger l'OS principal.</li>
+      <li><strong>os1/</strong> : version actuelle de l'OS en service.</li>
+      <li><strong>os2/</strong> : ancienne version de secours. Si <code>os1/os.txt</code> est corrompu ou absent, le boot renomme les dossiers et relance depuis l'ancienne version automatiquement.</li>
+    </ul>
+    <p>Un système robuste qui évite le brick de la console, même après une mise à jour ratée.</p>
+    <p><strong>Proton + UI Custom</strong> sont utilisés pour exécuter les jeux. La console se synchronise automatiquement avec la bibliothèque Steam de l'utilisateur.</p>
+    <h3>Installation et Mises à jour des Jeux</h3>
+    <p>La structure de gestion des jeux permet de jouer même pendant les mises à jour :</p>
+    <pre>
+      game/
+      ├── instance/{nom_du_jeu}/      ← Version stable utilisée en cours
+      └── update/{nom_du_jeu}/        ← Nouvelle version en cours de téléchargement
+    </pre>
+    <p>Quand une mise à jour est disponible, elle est téléchargée dans <code>game/update/</code>. Le jeu continue de fonctionner normalement depuis <code>game/instance/</code>. Une fois le téléchargement terminé, la console notifie le joueur qu’il pourra basculer vers la nouvelle version après avoir quitté sa session actuelle. Le système compare automatiquement les <code>version.txt</code> pour lancer la plus récente.</p>
+  </section>
+
+  <section class="section" id="support">
+    <h2>Soutenir le Projet</h2>
+    <p>Ce projet est indépendant, communautaire et ambitieux. Il vise à redonner le pouvoir aux joueurs, avec une console vraiment libre et évolutive. Si tu veux nous aider à le concrétiser, tu peux contribuer dès maintenant :</p>
+    <a href="https://paypal.me/satanas1275" target="_blank" class="btn">Soutenir sur PayPal</a>
+  </section>
+
+  <footer>
+    <p>© 2020-2025 ROCKNITE STUDIO. Tous droits réservés.</p>
+    <p>Développé par Satanas1275</p>
+  </footer>
+</body>
+</html>
