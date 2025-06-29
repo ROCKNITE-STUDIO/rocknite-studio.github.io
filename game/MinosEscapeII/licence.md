@@ -38,4 +38,4 @@ Les autres modifications sont tolérées, mais **aucune assistance ne sera assur
 
 📬 CONTACT
 
-support@rocknite-studio.com
+rocknite-studio@alwaysdata.net
