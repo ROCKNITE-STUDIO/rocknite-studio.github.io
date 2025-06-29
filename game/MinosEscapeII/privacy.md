@@ -33,4 +33,4 @@ Vous pouvez demander la suppression de vos données à tout moment par e-mail.
 
 📬 CONTACT RGPD
 
-dpo@rocknite-studio.com
+rocknite-studio@alwaysdata.net
