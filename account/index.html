@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connexion PocketBase</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+</head>
+<body>
+    <header>
+        <ul>
+            <li>
+                <a href="https://rocknite-studio.github.io/">Accueil</a>
+            </li>
+            <li>
+                <a href="https://rocknite-studio.github.io/jeux">Jeux</a>
+            </li>
+            <li>
+                <a href="https://rocknite-studio.github.io/news">News</a>
+            </li>
+            <li>
+                <a href="https://rocknite-studio.github.io/SUPPORT">Assistance</a>
+            </li>
+            <li>
+                <a href="https://rocknite-studio.github.io/login">Compte</a>
+            </li>
+        </ul>
+    </header>
+
+  <!-- Connexion -->
+  <div class="container" id="login-section">
+    <h1>Connexion</h1>
+    <form onsubmit="login(event)">
+      <label for="login-email">Email</label>
+      <input id="login-email" type="email" required />
+      <label for="login-password">Mot de passe</label>
+      <input id="login-password" type="password" required />
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
+
+  <!-- Inscription -->
+  <div class="container" id="register-section" style="display: none;">
+    <h1>Inscription</h1>
+    <form onsubmit="register(event)">
+      <label for="register-email">Email</label>
+      <input id="register-email" type="email" required />
+      <label for="register-name">Nom</label>
+      <input id="register-name" type="text" required />
+      <label for="register-password">Mot de passe</label>
+      <input id="register-password" type="password" required />
+      <label for="register-password2">Confirmer le mot de passe</label>
+      <input id="register-password2" type="password" required />
+      <button type="submit">Créer un compte</button>
+    </form>
+  </div>
+
+  <!-- Mon Compte -->
+  <div class="container" id="account-section" style="display: none;">
+    <h1>Mon compte</h1>
+    <img
+      id="account-avatar"
+      src=""
+      alt="Avatar"
+      style="width: 100px; border-radius: 50%; margin-bottom: 10px"
+    />
+    <p><strong>Email :</strong> <span id="account-email"></span></p>
+    <p><strong>Nom :</strong> <span id="account-name"></span></p>
+    <p><strong>ID :</strong> <span id="account-id"></span></p>
+    <p><strong>Solde :</strong> <span id="account-balance">...</span> crédits</p>
+
+    <h2>Jeux possédés</h2>
+    <div
+      id="owned-games"
+      style="
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      "
+    ></div>
+
+    <button id="logout-button" onclick="logout()">Déconnexion</button>
+  </div>
+
+  <script>
+    const pb = new PocketBase("http://127.0.0.1:8090");
+
+    function showSection(section) {
+      document.getElementById("login-section").style.display = "none";
+      document.getElementById("register-section").style.display = "none";
+      document.getElementById("account-section").style.display = "none";
+      document.getElementById(section + "-section").style.display = "block";
+      if (section === "account") updateAccountInfo();
+    }
+
+    async function login(event) {
+      event.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      try {
+        await pb.collection("users").authWithPassword(email, password);
+        alert("Connecté !");
+        showSection("account");
+      } catch (err) {
+        alert("Erreur de connexion : " + err.message);
+      }
+    }
+
+    async function register(event) {
+      event.preventDefault();
+      const email = document.getElementById("register-email").value;
+      const name = document.getElementById("register-name").value;
+      const password = document.getElementById("register-password").value;
+      const password2 = document.getElementById("register-password2").value;
+      try {
+        await pb.collection("users").create({
+          email,
+          name,
+          password,
+          passwordConfirm: password2,
+        });
+        alert("Compte créé !");
+        showSection("login");
+      } catch (err) {
+        alert("Erreur : " + err.message);
+      }
+    }
+
+    function logout() {
+      pb.authStore.clear();
+      alert("Déconnecté");
+      showSection("login");
+    }
+
+    async function updateAccountInfo() {
+      const user = pb.authStore.model;
+      if (!user) return;
+
+      document.getElementById("account-email").textContent = user.email;
+      document.getElementById("account-name").textContent = user.name;
+      document.getElementById("account-id").textContent = user.id;
+
+      const avatarUrl = user.avatar
+        ? `http://127.0.0.1:8090/api/files/users/${user.id}/${user.avatar}`
+        : "https://via.placeholder.com/100?text=No+Avatar";
+      document.getElementById("account-avatar").src = avatarUrl;
+
+      // Récupérer solde en gérant les erreurs (403)
+      try {
+        const wallets = await pb.collection("wallets").getFullList({
+          filter: `user="${user.id}"`,
+          sort: "-created",
+          limit: 1,
+        });
+        const balance = wallets.length > 0 ? wallets[0].balance : 0;
+        document.getElementById("account-balance").textContent = balance;
+      } catch (err) {
+        if (err.status === 403)
+          alert(
+            "Erreur : Vous n'avez pas les permissions d'accéder au solde (wallets)."
+          );
+        else alert("Erreur lors de la récupération du solde : " + err.message);
+        document.getElementById("account-balance").textContent = "N/A";
+      }
+
+      // Récupérer jeux possédés en gérant erreurs
+      try {
+        const purchases = await pb.collection("purchases").getFullList({
+          filter: `user="${user.id}" && status="paid"`,
+          expand: "game",
+        });
+
+        const gameContainer = document.getElementById("owned-games");
+        gameContainer.innerHTML = "";
+
+        purchases.forEach((p) => {
+          const game = p.expand.game;
+          if (!game) return;
+
+          const div = document.createElement("div");
+          div.style =
+            "background:#111;padding:10px;border-radius:8px;width:120px;";
+          div.innerHTML = `
+            <img src="${game.image}" style="width:100%;border-radius:5px;" alt="${game.title}">
+            <p style="color:white;font-size:14px;">${game.title}</p>
+          `;
+          gameContainer.appendChild(div);
+        });
+      } catch (err) {
+        if (err.status === 403)
+          alert(
+            "Erreur : Vous n'avez pas les permissions d'accéder aux achats (purchases)."
+          );
+        else alert("Erreur lors de la récupération des jeux : " + err.message);
+      }
+    }
+
+    if (pb.authStore.isValid) showSection("account");
+  </script>
+</body>
+</html>
