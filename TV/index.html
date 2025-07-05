@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Accueil - ROCKNITE-TV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: #1a0000;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .navbar {
+      background: #330000;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 10px 20px;
+      box-shadow: 0 0 10px #ff4500;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .navbar a:hover {
+      color: #ff4500;
+    }
+
+    .logo {
+      color: #ff4500;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    .section {
+      padding: 20px;
+    }
+
+    .section h2 {
+      color: #ff4500;
+      margin-bottom: 15px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 15px;
+      justify-items: center;
+    }
+
+    @media (min-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(9, 1fr);
+      }
+    }
+
+    .item {
+      background: #220000;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      transition: 0.3s;
+      max-width: 150px;
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #ff2200;
+    }
+
+    .item img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .item p {
+      padding: 8px;
+      font-size: 13px;
+    }
+
+    .vertical img {
+      height: 250px;
+    }
+
+    .square img {
+      aspect-ratio: 1 / 1;
+    }
+
+    .badge {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      background: #ff4500;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .notif {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ff2200;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ff2200;
+      font-size: 14px;
+      display: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo">ROCKNITE-TV</div>
+  <a onclick="showSection('home')">Accueil</a>
+  <a onclick="showSection('films')">Films</a>
+  <a onclick="showSection('series')">Séries</a>
+  <a onclick="showSection('musiques')">Musiques</a>
+</div>
+
+<div class="section" id="home-section">
+  <h2>Recommandé pour vous</h2>
+  <div class="grid" id="recommendations"></div>
+
+  <h2>Top 9</h2>
+  <div class="grid" id="top10"></div>
+</div>
+
+<div class="section" id="films-section" style="display:none;">
+  <h2>Films</h2>
+  <div class="grid" id="films"></div>
+</div>
+
+<div class="section" id="series-section" style="display:none;">
+  <h2>Séries</h2>
+  <div class="grid" id="series"></div>
+</div>
+
+<div class="section" id="musiques-section" style="display:none;">
+  <h2>Musiques</h2>
+  <div class="grid" id="musiques"></div>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+<script>
+  const pb = new PocketBase('http://192.168.1.20:8083/');
+
+  async function checkAccess() {
+    if (!pb.authStore.isValid) {
+      window.location.href = "/account/login";
+      return;
+    }
+
+    const userId = pb.authStore.model.id;
+    try {
+      const subscription = await pb.collection('TV_purchases').getFirstListItem(`user="${userId}"`, {
+        sort: "-created"
+      });
+
+      const createdAt = new Date(subscription.created);
+      const now = new Date();
+      const diffDays = (now - createdAt) / (1000 * 60 * 60 * 24);
+
+      if (diffDays > 30) {
+        window.location.href = "/subscribe";
+        return;
+      }
+
+      loadContent();
+    } catch {
+      window.location.href = "/subscribe";
+    }
+  }
+
+  async function loadContent() {
+    const media = await pb.collection('TV_media').getFullList({ sort: '-created' });
+
+    fillGrid("films", media.filter(m => m.type === "movies"), "vertical");
+    fillGrid("series", media.filter(m => m.type === "series"), "vertical");
+    fillGrid("musiques", media.filter(m => m.type === "music"), "square");
+
+    const topMedia = media
+      .filter(m => m.top >= 1 && m.top <= 9)
+      .sort((a, b) => a.top - b.top);
+    fillGrid("top10", topMedia, "vertical");
+
+    fillGrid("recommendations", media.slice(0, 5), "vertical");
+  }
+
+  function fillGrid(containerId, items, styleClass) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = "";
+    items.forEach(item => {
+      const div = document.createElement("div");
+      div.className = `item ${styleClass}`;
+
+      const imageUrl = item.picture
+        ? `http://192.168.1.20:8083/api/files/TV_media/${item.id}/${item.picture}`
+        : "https://via.placeholder.com/300x400?text=No+Image";
+
+      const typeLabel = item.type === "movies" ? "Film" :
+                        item.type === "series" ? "Série" :
+                        item.type === "music" ? "Musique" : "";
+
+      div.innerHTML = `
+        <span class="badge">${typeLabel}</span>
+        <img src="${imageUrl}">
+        <p>${item.name}</p>
+      `;
+
+      div.addEventListener("click", () => {
+        if (item.link) {
+          window.open(item.link, "_blank");
+        } else {
+          showNotif("Une erreur interne est survenue.");
+        }
+      });
+
+      container.appendChild(div);
+    });
+  }
+
+  function showNotif(message) {
+    const notif = document.getElementById("notif");
+    notif.textContent = message;
+    notif.style.display = "block";
+    setTimeout(() => {
+      notif.style.display = "none";
+    }, 3000);
+  }
+
+  function showSection(section) {
+    ["home", "films", "series", "musiques"].forEach(s => {
+      document.getElementById(s + "-section").style.display = s === section ? "block" : "none";
+    });
+  }
+
+  checkAccess();
+</script>
+
+</body>
+</html>
