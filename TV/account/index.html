@@ -108,7 +108,7 @@
 
     // Redirection automatique si déjà connecté
     if (pb.authStore.isValid) {
-      window.location.href = "/";
+      window.location.href = "../";
     }
 
     function showSection(section) {
@@ -122,7 +122,7 @@
       const password = document.getElementById("login-password").value;
       try {
         await pb.collection("users").authWithPassword(email, password);
-        window.location.href = "/";
+        window.location.href = "../";
       } catch (err) {
         alert("Erreur de connexion : " + err.message);
       }
