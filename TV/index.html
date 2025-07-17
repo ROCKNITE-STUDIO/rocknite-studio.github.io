@@ -172,8 +172,13 @@
     const userId = pb.authStore.model.id;
     try {
       const subscription = await pb.collection('TV_purchases').getFirstListItem(`user="${userId}"`, {
-        sort: "-created"
+        expand: 'plan'
       });
+
+      if (!subscription.expand?.plan || subscription.expand.plan.name !== "BASIC") {
+        window.location.href = "/subscribe";
+        return;
+      }
 
       const createdAt = new Date(subscription.created);
       const now = new Date();
@@ -185,7 +190,7 @@
       }
 
       loadContent();
-    } catch {
+    } catch (err) {
       window.location.href = "/subscribe";
     }
   }
