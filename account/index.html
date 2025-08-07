@@ -142,7 +142,7 @@
       document.getElementById("account-id").textContent = user.id;
 
       const avatarUrl = user.avatar
-        ? `http://127.0.0.1:8090/api/files/users/${user.id}/${user.avatar}`
+        ? `https://rocknite-studio.alwaysdata.net/api/files/users/${user.id}/${user.avatar}`
         : "https://via.placeholder.com/100?text=No+Avatar";
       document.getElementById("account-avatar").src = avatarUrl;
 
