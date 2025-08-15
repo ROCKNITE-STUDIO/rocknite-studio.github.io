@@ -37,6 +37,7 @@
       <input id="login-password" type="password" required />
       <button type="submit">Se connecter</button>
     </form>
+    <p>Pas encore de compte ? <button onclick="showSection('register')">S'inscrire</button></p>
   </div>
 
   <!-- Inscription -->
@@ -53,8 +54,9 @@
       <input id="register-password2" type="password" required />
       <button type="submit">Créer un compte</button>
     </form>
+    <p>Déjà un compte ? <button onclick="showSection('login')">Se connecter</button></p>
   </div>
-
+  
   <!-- Mon Compte -->
   <div class="container" id="account-section" style="display: none;">
     <h1>Mon compte</h1>
