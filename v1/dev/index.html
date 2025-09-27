@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netlify Identity Example</title>
+    <!-- Include the Netlify Identity widget script -->
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+    <h1>Netlify Identity Example</h1>
+    <!-- Add a menu for authentication -->
+    <div data-netlify-identity-menu></div>
+    <!-- Add a simple button to open the modal -->
+    <div data-netlify-identity-button>Login with Netlify Identity</div>
+
+    <script>
+        // Use the global object window.netlifyIdentity to interact with the widget
+        // Open the modal
+        window.netlifyIdentity.open();
+
+        // Close the modal
+        // window.netlifyIdentity.close();
+
+        // Log out the user
+        // window.netlifyIdentity.logout();
+
+        // Refresh the user's JWT
+        // window.netlifyIdentity.refresh();
+    </script>
+</body>
+</html>
