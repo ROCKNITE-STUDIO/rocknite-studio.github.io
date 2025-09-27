@@ -1,5 +1,5 @@
 function redirectToGame() {
-    window.location.href = "/game/";
+    window.location.href = "/v2/game/";
 }
 
 redirectToGame();
