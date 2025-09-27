@@ -1,0 +1,19 @@
+[
+    {
+        "title": "Minos Escape",
+        "creator": "Sneak0811",
+        "version": "1.0",
+        "price": "free",
+        "link": "/game/MinosEscape",
+        "image": "/images/image1.png"
+    },
+    {
+        "title": "ROCKNITE ALPHA",
+        "creator": "Satanas1275",
+        "version": "Alpha 1.3.0",
+        "price": "free",
+        "featured": true,
+        "link": "/game/ROCKNITE-ALPHA",
+        "image": "/images/rocknite/image3.png"
+    }
+]
