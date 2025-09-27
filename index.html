@@ -1,15 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="google-site-verification" content="d6GM2r3oV0quDAMWtnLms8UdafThSMy1hzo9j9-I42M"/>
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <title>Redirection...</title>
-  <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site déplacé</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #f0f0f0;
+            --accent-color: #007bff;
+            --timeline-color: #444;
+        }
+        body.light-theme {
+            --bg-color: #ffffff;
+            --text-color: #333;
+            --timeline-color: #ccc;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 30px;
+            max-width: 600px;
+            border-left: 2px solid var(--timeline-color);
+            padding-left: 20px;
+        }
+        .event {
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+        .event-date {
+            font-weight: bold;
+        }
+        .theme-toggle {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .theme-toggle:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  <p>Redirection...</p>
+    <h1>Le site a été déplacé !</h1>
+    <p>Vous pouvez désormais nous retrouver à l'adresse suivante :</p>
+    <a href="https://rocknite-studio.com" target="_blank">https://rocknite-studio.com</a>
+    <br>
+    <p>Pour voir la V1 du site :</p>
+    <a href="https://rocknite-studio.github.io/v1" target="_blank">rocknite-studio.github.io/v1</a>
+    <br>
+    <p>Pour voir la V1 du site :</p>
+    <a href="https://rocknite-studio.github.io/v2" target="_blank">rocknite-studio.github.io/v2</a>
+    
+    <!-- Bouton pour changer le thème -->
+    <button class="theme-toggle" onclick="toggleTheme()">Changer de thème</button>
+
+    <!-- Frise chronologique -->
+    <div class="timeline">
+        <div class="event">
+            <span class="event-date">Mars 2020</span> - Création de ROCKNITE STUDIO ©
+        </div>
+        <div class="event">
+            <span class="event-date">Janvier 2022</span> - Création de la première version du site publié avec Netlify
+        </div>
+        <div class="event">
+            <span class="event-date">Mars 2022</span> - Refonte totale du site web
+        </div>
+        <div class="event">
+            <span class="event-date">Août 2022</span> - Passage à serveo.net
+        </div>
+        <div class="event">
+            <span class="event-date">Mars 2023</span> - Refonte totale du site web + ajout du système de login
+        </div>
+        <div class="event">
+            <span class="event-date">Novembre 2024</span> - Passage à GitHub Pages
+        </div>
+        <div class="event">
+            <span class="event-date">Septembre 2025</span> - Achat d'un nom de domaine + passage en hebergement local + grosse mise a jour du github.
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour basculer entre le thème sombre et clair
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+        }
+    </script>
 </body>
 </html>
