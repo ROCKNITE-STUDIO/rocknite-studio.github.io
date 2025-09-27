@@ -10,7 +10,7 @@ Vous pouvez consulter les termes d'utilisation de notre contenu en accédant à 
 ## Site officiel
 
 Découvrez nos créations et contenus exclusifs sur notre site officiel :  
-[https://rocknite-studio.github.io](https://rocknite-studio.github.io)
+[https://rocknite-studio.com](https://rocknite-studio.com)
 
 ---
 
