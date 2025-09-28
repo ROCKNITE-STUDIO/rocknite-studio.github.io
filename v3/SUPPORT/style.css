@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+h3 {
+    color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #18191a;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px;
+    flex-direction: column;
+}
+
+/* Conteneur pour les cartes de support */
+.container {
+    max-width: 1200px; /* Augmenter la largeur */
+    width: 100%;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#support-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.support-card {
+    background-color: #2e2d2d;
+    border-radius: 8px;
+    padding: 20px;
+    width: calc(25% - 20px); /* Modifier pour afficher 4 par ligne */
+    display: flex;
+    flex-direction: column; /* Organiser les éléments verticalement */
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    overflow: hidden;
+}
+
+.support-card img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.support-card .info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.support-card .info h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Modification des couleurs */
+.support-card .info p {
+    margin: 5px 0;
+    color: #ff9900; /* Texte en orange pour l'email et le rôle */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.support-card .info .label {
+    color: #ffffff; /* Etiquette 'Email' et 'Rôle' en blanc */
+    font-weight: bold;
+}
+
+.support-card .info a {
+    color: #ff9900; /* Email en orange */
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.support-card .info a:hover {
+    text-decoration: underline;
+}

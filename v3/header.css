@@ -1,0 +1,30 @@
+header {
+    background: #232526;
+    color: #bbfcfb;
+    padding: 12px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+header ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+}
+
+header a {
+    color: #bbfcfb;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 17px;
+    transition: color 0.2s;
+}
+
+header a:hover {
+    color: #fff;
+}

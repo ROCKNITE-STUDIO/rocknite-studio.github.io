@@ -1,0 +1,21 @@
+[
+    {
+        "title": "Fin de ROCKNITE ALPHA",
+        "description": "Après une longue réflexion, je me suis dit qu'il valait mieux abandonner ROCKNITE ALPHA, un projet trop ambitieux pour un développeur Inde.",
+        "link": "/news/ROCKNITE",
+        "date": "20 septembre 2025"
+    },
+    {
+        "title": "Mise à jour du site",
+        "description": "Le site a reçu une nouvelle mise à jour pour améliorer votre expérience.",
+        "link": "/news/update1",
+        "date": "16 Novembre 2024"
+    },
+    {
+        "title": "Minos Escape",
+        "description": "Sortie officielle de Minos Escape V1 !",
+        "image": "/images/image1.png",
+        "link": "/news/MinosEscapeV1.0.0",
+        "date": "15 Novembre 2024"
+    }
+]

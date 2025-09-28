@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ROCKNITE-TV - Connexion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a0000, #330000);
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #220000;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff4500;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #ff4500;
+      letter-spacing: 1px;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: #330000;
+      color: #fff;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+    input:focus {
+      outline: none;
+      background: #440000;
+    }
+    button {
+      background: linear-gradient(90deg, #ff4500, #ff2200);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #ff2200, #ff4500);
+      transform: scale(1.05);
+    }
+    p {
+      font-size: 12px;
+      margin-top: 10px;
+    }
+    a {
+      color: #ff4500;
+      cursor: pointer;
+      text-decoration: underline;
+      transition: 0.3s;
+    }
+    a:hover {
+      color: #ff2200;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="login-section">
+    <h1>ROCKNITE-TV</h1>
+    <form onsubmit="login(event)">
+      <input type="email" id="login-email" placeholder="Email" required>
+      <input type="password" id="login-password" placeholder="Mot de passe" required>
+      <button type="submit">Connexion</button>
+    </form>
+    <p>Pas encore de compte ? <a onclick="showSection('register')">Créer un compte</a></p>
+  </div>
+
+  <div class="container" id="register-section" style="display:none;">
+    <h1>Créer un compte</h1>
+    <form onsubmit="register(event)">
+      <input type="text" id="register-name" placeholder="Nom" required>
+      <input type="email" id="register-email" placeholder="Email" required>
+      <input type="password" id="register-password" placeholder="Mot de passe" required>
+      <input type="password" id="register-password2" placeholder="Confirmer le mot de passe" required>
+      <button type="submit">S'inscrire</button>
+    </form>
+    <p>Déjà inscrit ? <a onclick="showSection('login')">Connexion</a></p>
+  </div>
+
+  <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+  <script>
+    const pb = new PocketBase("https://rocknite-studio.alwaysdata.net/");
+
+    // Redirection automatique si déjà connecté
+    if (pb.authStore.isValid) {
+      window.location.href = "../";
+    }
+
+    function showSection(section) {
+      document.getElementById("login-section").style.display = section === "login" ? "block" : "none";
+      document.getElementById("register-section").style.display = section === "register" ? "block" : "none";
+    }
+
+    async function login(event) {
+      event.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      try {
+        await pb.collection("users").authWithPassword(email, password);
+        window.location.href = "../";
+      } catch (err) {
+        alert("Erreur de connexion : " + err.message);
+      }
+    }
+
+    async function register(event) {
+      event.preventDefault();
+      const name = document.getElementById("register-name").value;
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
+      const password2 = document.getElementById("register-password2").value;
+      try {
+        await pb.collection("users").create({
+          email,
+          name,
+          password,
+          passwordConfirm: password2,
+        });
+        alert("Compte créé, connecte-toi !");
+        showSection("login");
+      } catch (err) {
+        alert("Erreur lors de l'inscription : " + err.message);
+      }
+    }
+  </script>
+</body>
+</html>
