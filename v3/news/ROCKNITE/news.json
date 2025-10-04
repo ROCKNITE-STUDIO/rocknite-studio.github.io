@@ -1,21 +1,37 @@
 [
     {
-        "title": "Fin de ROCKNITE ALPHA",
-        "description": "Après une longue réflexion, je me suis dit qu'il valait mieux abandonner ROCKNITE ALPHA, un projet trop ambitieux pour un développeur Inde.",
-        "link": "/news/ROCKNITE",
-        "date": "20 septembre 2025"
+        "title": "Naissance du projet ROCKNITE",
+        "description": "Création du projet avec une petite équipe de 4 personnes : Satanas1275, KAJARO et deux autres membres.",
+        "date": "2020"
     },
     {
-        "title": "Mise à jour du site",
-        "description": "Le site a reçu une nouvelle mise à jour pour améliorer votre expérience.",
-        "link": "/news/update1",
+        "title": "Pause du projet",
+        "description": "Entrée au collège, départ de deux membres de l'équipe et perte de motivation avec KAJARO.",
+        "date": "2021"
+    },
+    {
+        "title": "Discussions autour du projet",
+        "description": "Le projet refait surface dans les conversations, mais sans reprise concrète.",
+        "date": "2022"
+    },
+    {
+        "title": "Reprise du développement",
+        "description": "Retour en solo sur ROCKNITE et début concret du développement par Satanas1275.",
+        "date": "2023"
+    },
+    {
+        "title": "Pause de ROCKNITE ALPHA",
+        "description": "Mise en pause du développement suite à un découragement.",
         "date": "16 Novembre 2024"
     },
     {
-        "title": "Minos Escape",
-        "description": "Sortie officielle de Minos Escape V1 !",
-        "image": "/images/image1.png",
-        "link": "/news/MinosEscapeV1.0.0",
-        "date": "15 Novembre 2024"
+        "title": "Reprise de ROCKNITE ALPHA",
+        "description": "Relance du développement par Satanas1275 avec motivation et l’envie d’avancer.",
+        "date": "4 Avril 2025"
+    },
+    {
+        "title": "Fin de ROCKNITE ALPHA",
+        "description": "Décision d’abandonner le projet, jugé trop ambitieux pour un développeur indépendant. Une expérience riche en apprentissage sur Unreal Engine et la gestion de projet.",
+        "date": "28 Septembre 2025"
     }
 ]
