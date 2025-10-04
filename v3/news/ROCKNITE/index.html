@@ -4,73 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROCKNITE STUDIO | News</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="/v3/header.css" />
-    <link rel="icon" href="/v3/logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/header.css" />
+    <link rel="icon" href="/logo.png" />
     <meta name="description" content="ROCKNITE STUDIO | Toutes les actualités concernant nos projets et jeux !">
 </head>
 <body>
     <header>
         <ul>
-            <li><a href="/v3/">Accueil</a></li>
-            <li><a href="/v3/game">Jeux</a></li>
-            <li><a href="/v3/news">News</a></li>
-            <li><a href="/v3/SUPPORT">Assistance</a></li>
-            <li><a href="/v3/account">Compte</a></li>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/game">Jeux</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/SUPPORT">Assistance</a></li>
+            <li><a href="/account">Compte</a></li>
         </ul>
     </header>
 
-    <div id="news-container">
-        <!-- Les actualités seront insérées ici via JavaScript -->
-    </div>
+    <section class="timeline">
+        <div id="news-container"></div>
+    </section>
 
     <script>
-        // Fonction pour charger les actualités depuis le fichier JSON
         fetch('news.json')
             .then(response => response.json())
             .then(data => {
                 const newsContainer = document.getElementById('news-container');
-                data.forEach(news => {
-                    // Créer un élément de type news-item pour chaque actualité
-                    const newsItem = document.createElement('div');
-                    newsItem.classList.add('news-item');
+                data.forEach((news, index) => {
+                    const item = document.createElement('div');
+                    item.classList.add('timeline-item');
 
-                    // Ajouter le titre
-                    const title = document.createElement('h2');
-                    title.textContent = news.title;
-                    newsItem.appendChild(title);
-
-                    // Ajouter la date
-                    const date = document.createElement('p');
-                    date.classList.add('date');
-                    date.textContent = news.date;  // La date devrait être au format : "12 Novembre 2024"
-                    newsItem.appendChild(date);
-
-                    // Ajouter la description
-                    const description = document.createElement('p');
-                    description.textContent = news.description;
-                    newsItem.appendChild(description);
-
-                    // Ajouter l'image si elle existe
-                    if (news.image) {
-                        const image = document.createElement('img');
-                        image.src = news.image;
-                        image.alt = "Image de l'actualité";
-                        newsItem.appendChild(image);
+                    // Position gauche/droite en alternance
+                    if (index % 2 === 0) {
+                        item.classList.add('left');
+                    } else {
+                        item.classList.add('right');
                     }
 
-                    // Ajouter le lien vers l'actualité complète
-                    const link = document.createElement('a');
-                    link.href = news.link;
-                    link.classList.add('btn');
-                    link.textContent = 'Lire plus';
-                    newsItem.appendChild(link);
+                    item.innerHTML = `
+                        <div class="content">
+                            <span class="date">${news.date}</span>
+                            <h2>${news.title}</h2>
+                            <p>${news.description}</p>
+                            ${news.image ? `<img src="${news.image}" alt="Image actu">` : ""}
+                        </div>
+                    `;
 
-                    // Ajouter l'élément de l'actualité au container
-                    newsContainer.appendChild(newsItem);
+                    newsContainer.appendChild(item);
                 });
             })
-            .catch(error => console.log('Erreur de chargement du fichier JSON:', error));
+            .catch(error => console.log('Erreur chargement JSON :', error));
     </script>
 </body>
 </html>
