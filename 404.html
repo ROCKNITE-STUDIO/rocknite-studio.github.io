@@ -1,64 +1,118 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page non trouvée</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(120deg, #ff6e7f, #bfe9ff);
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            max-width: 600px;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 8rem;
-            margin: 0;
-        }
-        h2 {
-            font-size: 2rem;
-            margin: 10px 0 20px;
-        }
-        p {
-            font-size: 1.2rem;
-            margin: 20px 0;
-        }
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background-color: #007bff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        a:hover {
-            background-color: #0056b3;
-        }
-        .illustration {
-            font-size: 5rem;
-            margin-bottom: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page non trouvée</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: radial-gradient(circle at top, #1f1f1f, #0d0d0d);
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 10rem;
+      margin: 0;
+      color: #bbfcfb;
+      text-shadow: 0 0 20px #00eaff, 0 0 40px #00bfff;
+      animation: pulse 2s infinite alternate;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 10px 0 20px;
+      color: #ccc;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 20px 0;
+      color: #aaa;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1rem;
+      color: #0d0d0d;
+      background-color: #bbfcfb;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      box-shadow: 0 0 15px rgba(187, 252, 251, 0.7);
+      transition: all 0.3s;
+    }
+    a:hover {
+      background-color: #fff;
+      box-shadow: 0 0 25px #00eaff;
+    }
+
+    .illustration {
+      font-size: 4rem;
+      margin-bottom: 15px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Animation glow 404 */
+    @keyframes pulse {
+      from { text-shadow: 0 0 10px #00bfff, 0 0 20px #00eaff; }
+      to   { text-shadow: 0 0 30px #00eaff, 0 0 60px #00bfff; }
+    }
+
+    /* Animation illustration flottante */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    /* Fond animé "étoiles" */
+    .background span {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #bbfcfb;
+      border-radius: 50%;
+      animation: twinkle 5s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(0.5); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="illustration">🚀</div>
-        <h1>404</h1>
-        <h2>Page non trouvée</h2>
-        <p>Oups ! La page que vous recherchez n'existe pas ou a été déplacée.</p>
-        <a href="/">Retour à l'accueil</a>
-    </div>
+  <div class="background">
+    <!-- Petites "étoiles" -->
+    <span style="top:10%; left:20%; animation-delay:0s;"></span>
+    <span style="top:30%; left:70%; animation-delay:2s;"></span>
+    <span style="top:60%; left:40%; animation-delay:4s;"></span>
+    <span style="top:80%; left:80%; animation-delay:1s;"></span>
+    <span style="top:50%; left:10%; animation-delay:3s;"></span>
+  </div>
+
+  <div class="container">
+    <div class="illustration">🚀</div>
+    <h1>404</h1>
+    <h2>Page non trouvée</h2>
+    <p>Oups ! La page que vous cherchez a disparu dans l’espace... 🌌</p>
+    <a href="/">Retour à l'accueil</a>
+  </div>
 </body>
 </html>
